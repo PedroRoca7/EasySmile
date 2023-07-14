@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		CE9C85CF2A61D2040028FC24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */; };
 		CE9C85D12A61D2040028FC24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85D02A61D2040028FC24 /* SceneDelegate.swift */; };
-		CE9C85D32A61D2040028FC24 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85D22A61D2040028FC24 /* ViewController.swift */; };
+		CE9C85D32A61D2040028FC24 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85D22A61D2040028FC24 /* InitialScreenViewController.swift */; };
 		CE9C85D62A61D2040028FC24 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9C85D42A61D2040028FC24 /* Main.storyboard */; };
 		CE9C85D82A61D2080028FC24 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9C85D72A61D2080028FC24 /* Assets.xcassets */; };
 		CE9C85DB2A61D2080028FC24 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9C85D92A61D2080028FC24 /* LaunchScreen.storyboard */; };
 		CE9C85E62A61D2090028FC24 /* EasySmileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85E52A61D2090028FC24 /* EasySmileTests.swift */; };
 		CE9C85F02A61D2090028FC24 /* EasySmileUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85EF2A61D2090028FC24 /* EasySmileUITests.swift */; };
 		CE9C85F22A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85F12A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift */; };
+		CE9C86072A61E6D60028FC24 /* ScreenLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C86062A61E6D50028FC24 /* ScreenLoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,7 @@
 		CE9C85CB2A61D2040028FC24 /* EasySmile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasySmile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9C85D02A61D2040028FC24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9C85D22A61D2040028FC24 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CE9C85D22A61D2040028FC24 /* InitialScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialScreenViewController.swift; sourceTree = "<group>"; };
 		CE9C85D52A61D2040028FC24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CE9C85D72A61D2080028FC24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9C85DA2A61D2080028FC24 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		CE9C85EB2A61D2090028FC24 /* EasySmileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasySmileUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C85EF2A61D2090028FC24 /* EasySmileUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasySmileUITests.swift; sourceTree = "<group>"; };
 		CE9C85F12A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasySmileUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE9C86062A61E6D50028FC24 /* ScreenLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenLoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +101,12 @@
 		CE9C85CD2A61D2040028FC24 /* EasySmile */ = {
 			isa = PBXGroup;
 			children = (
+				CE9C86012A61DEE90028FC24 /* ViewModels */,
+				CE9C86002A61DEDF0028FC24 /* Models */,
+				CE9C85FF2A61DED90028FC24 /* Utils */,
+				CE9C85FE2A61DEBC0028FC24 /* Views */,
 				CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */,
 				CE9C85D02A61D2040028FC24 /* SceneDelegate.swift */,
-				CE9C85D22A61D2040028FC24 /* ViewController.swift */,
-				CE9C85D42A61D2040028FC24 /* Main.storyboard */,
 				CE9C85D72A61D2080028FC24 /* Assets.xcassets */,
 				CE9C85D92A61D2080028FC24 /* LaunchScreen.storyboard */,
 				CE9C85DC2A61D2080028FC24 /* Info.plist */,
@@ -125,6 +129,37 @@
 				CE9C85F12A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift */,
 			);
 			path = EasySmileUITests;
+			sourceTree = "<group>";
+		};
+		CE9C85FE2A61DEBC0028FC24 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE9C85D42A61D2040028FC24 /* Main.storyboard */,
+				CE9C86062A61E6D50028FC24 /* ScreenLoginViewController.swift */,
+				CE9C85D22A61D2040028FC24 /* InitialScreenViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE9C85FF2A61DED90028FC24 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CE9C86002A61DEDF0028FC24 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE9C86012A61DEE90028FC24 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,8 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9C85D32A61D2040028FC24 /* ViewController.swift in Sources */,
+				CE9C85D32A61D2040028FC24 /* InitialScreenViewController.swift in Sources */,
 				CE9C85CF2A61D2040028FC24 /* AppDelegate.swift in Sources */,
+				CE9C86072A61E6D60028FC24 /* ScreenLoginViewController.swift in Sources */,
 				CE9C85D12A61D2040028FC24 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
