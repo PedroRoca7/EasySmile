@@ -1,24 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fZ7-w3-MeY">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="r6X-Xe-nVE">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="o7h-XT-iux" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GM3-AC-IfD">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundTelaLogin" translatesAutoresizingMaskIntoConstraints="NO" id="CmU-0x-uV5">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o69-hE-CCp">
+                                <rect key="frame" x="111.66666666666669" y="173" width="170" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="Xv9-1h-N2a"/>
+                                    <constraint firstAttribute="height" constant="170" id="hGx-eX-q3f"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWj-Ue-YDV">
+                                <rect key="frame" x="110" y="368" width="173" height="81.333333333333314"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Easy">
+                                        <attributes>
+                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="24" name="Zapfino"/>
+                                            <font key="NSOriginalFont" metaFont="system" size="18"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Smile">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="36" name="AmericanTypewriter-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7N-aK-IQt">
+                                <rect key="frame" x="71.666666666666686" y="549.33333333333337" width="250" height="38"/>
+                                <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="XYO-GL-Nu1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="22"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3p0-ku-mdh">
+                                <rect key="frame" x="96.666666666666686" y="642.33333333333337" width="200" height="36"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="PYr-Da-7qy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Registre-se">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y66-LU-pjW">
+                                <rect key="frame" x="131.66666666666666" y="754" width="129.99999999999997" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="icK-OH-hSP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AlNile" family="Al Nile" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Precisa de Ajuda?">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QpB-CA-PCA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o69-hE-CCp" firstAttribute="top" secondItem="QpB-CA-PCA" secondAttribute="top" constant="70" id="5MV-hB-LcU"/>
+                            <constraint firstItem="RWj-Ue-YDV" firstAttribute="top" secondItem="o69-hE-CCp" secondAttribute="bottom" constant="25" id="Cfm-qf-dae"/>
+                            <constraint firstItem="CmU-0x-uV5" firstAttribute="leading" secondItem="GM3-AC-IfD" secondAttribute="leading" id="Jvb-En-Yba"/>
+                            <constraint firstItem="y7N-aK-IQt" firstAttribute="centerX" secondItem="CmU-0x-uV5" secondAttribute="centerX" id="KK9-yg-U3g"/>
+                            <constraint firstItem="3p0-ku-mdh" firstAttribute="centerX" secondItem="CmU-0x-uV5" secondAttribute="centerX" id="LjK-eh-req"/>
+                            <constraint firstItem="o69-hE-CCp" firstAttribute="centerX" secondItem="CmU-0x-uV5" secondAttribute="centerX" id="QUr-Vx-oui"/>
+                            <constraint firstItem="3p0-ku-mdh" firstAttribute="top" secondItem="y7N-aK-IQt" secondAttribute="bottom" constant="55" id="Rp9-wH-RTO"/>
+                            <constraint firstItem="y7N-aK-IQt" firstAttribute="top" secondItem="RWj-Ue-YDV" secondAttribute="bottom" constant="100" id="Uih-ZW-Dh2"/>
+                            <constraint firstAttribute="bottom" secondItem="CmU-0x-uV5" secondAttribute="bottom" id="dNz-Yv-5hH"/>
+                            <constraint firstItem="Y66-LU-pjW" firstAttribute="centerX" secondItem="CmU-0x-uV5" secondAttribute="centerX" id="dQv-4S-TGg"/>
+                            <constraint firstAttribute="trailing" secondItem="CmU-0x-uV5" secondAttribute="trailing" id="k8e-Be-neq"/>
+                            <constraint firstItem="RWj-Ue-YDV" firstAttribute="centerX" secondItem="CmU-0x-uV5" secondAttribute="centerX" id="kdK-CQ-948"/>
+                            <constraint firstItem="CmU-0x-uV5" firstAttribute="top" secondItem="GM3-AC-IfD" secondAttribute="top" id="lg1-MY-0d6"/>
+                            <constraint firstItem="QpB-CA-PCA" firstAttribute="bottom" secondItem="Y66-LU-pjW" secondAttribute="bottom" constant="30" id="lqj-2U-Wpa"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Zkr-ap-Dtu"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qre-3k-Vk9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1341.2213740458014" y="4.9295774647887329"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GCI-Vt-c7q">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fZ7-w3-MeY" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eA9-CP-1In">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="o7h-XT-iux" kind="relationship" relationship="rootViewController" id="iCC-fR-dIL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0d1-3C-oAP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="414.50381679389312" y="4.9295774647887329"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backgroundTelaLogin" width="3000" height="2000"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
