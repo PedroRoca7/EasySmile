@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE3BF0D82A66ED7B001C267F /* RegisterPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BF0D72A66ED7B001C267F /* RegisterPatientViewController.swift */; };
+		CE3BF0DA2A66ED9C001C267F /* RegisterDentistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BF0D92A66ED9C001C267F /* RegisterDentistViewController.swift */; };
 		CE9C85CF2A61D2040028FC24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */; };
 		CE9C85D12A61D2040028FC24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85D02A61D2040028FC24 /* SceneDelegate.swift */; };
 		CE9C85D32A61D2040028FC24 /* InitialScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85D22A61D2040028FC24 /* InitialScreenViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE3BF0D72A66ED7B001C267F /* RegisterPatientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPatientViewController.swift; sourceTree = "<group>"; };
+		CE3BF0D92A66ED9C001C267F /* RegisterDentistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDentistViewController.swift; sourceTree = "<group>"; };
 		CE9C85CB2A61D2040028FC24 /* EasySmile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasySmile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9C85D02A61D2040028FC24 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				CE9C85D42A61D2040028FC24 /* Main.storyboard */,
 				CE9C86062A61E6D50028FC24 /* ScreenLoginViewController.swift */,
 				CE9C85D22A61D2040028FC24 /* InitialScreenViewController.swift */,
+				CE3BF0D72A66ED7B001C267F /* RegisterPatientViewController.swift */,
+				CE3BF0D92A66ED9C001C267F /* RegisterDentistViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,7 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9C85D32A61D2040028FC24 /* InitialScreenViewController.swift in Sources */,
+				CE3BF0DA2A66ED9C001C267F /* RegisterDentistViewController.swift in Sources */,
 				CE9C85CF2A61D2040028FC24 /* AppDelegate.swift in Sources */,
+				CE3BF0D82A66ED7B001C267F /* RegisterPatientViewController.swift in Sources */,
 				CE9C86072A61E6D60028FC24 /* ScreenLoginViewController.swift in Sources */,
 				CE9C85D12A61D2040028FC24 /* SceneDelegate.swift in Sources */,
 			);
