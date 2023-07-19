@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseFirestore
+
 
 
 
@@ -20,7 +19,7 @@ class RegisterPatientViewController: UIViewController {
     @IBOutlet weak var senhaTextField: UITextField!
     @IBOutlet weak var cadastrarButton: UIButton!
     
-    let db = Firestore.firestore()
+    var viewModel: RegisterPatientViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +36,7 @@ class RegisterPatientViewController: UIViewController {
     }
     
     @objc func textFieldDidChange() {
-        // Verificar se todos os campos estão preenchidos para habilitar/desabilitar o botão de envio
+       
         let textFields: [UITextField] = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
 
         var allFieldsFilled = true
@@ -58,36 +57,19 @@ class RegisterPatientViewController: UIViewController {
         }
     }
 
-    @IBAction func submitButtonTapped(_ sender: UIButton) {
-        // Realizar a ação do botão de envio aqui
-        print("Botão de envio pressionado!")
-    }
 
     @IBAction func cadastrarPaciente(_ sender: Any) {
         
+        viewModel = RegisterPatientViewModel()
+        
         guard let nome = nomeCompletoPacientTextField.text,
               let email = emailTextField.text,
-              let cpf = cpfTextField.text,
-              let telefone = telefoneTextField.text,
+              let cpf = Int(cpfTextField.text ?? "0"),
+              let telefone = Int(telefoneTextField.text ?? "0"),
               let senha = senhaTextField.text else { return }
         
-        let usuarioData: [String: Any] = [
-            "nome": nome,
-            "email": email,
-            "cpf": cpf,
-            "telefone": telefone,
-            "senha": senha
-        ]
-        
-        db.collection("Usuarios").addDocument(data: usuarioData) { error in
-            if let error = error {
-                print("Erro ao cadastrar Usuário \(error.localizedDescription)")
-            } else {
-                print("Usuário cadastrado com sucesso")
-            }
-        }
-        
+        let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)
+            
+        viewModel?.addPatient(patient: patient)
     }
-    
-    
 }
