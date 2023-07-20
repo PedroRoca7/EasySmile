@@ -19,7 +19,7 @@ class RegisterPatientViewController: UIViewController {
     @IBOutlet weak var senhaTextField: UITextField!
     @IBOutlet weak var cadastrarButton: UIButton!
     
-    var viewModel: RegisterPatientViewModel?
+    var viewModel: RegisterLoginViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +74,12 @@ class RegisterPatientViewController: UIViewController {
     
     @IBAction func cadastrarPaciente(_ sender: Any) {
         
-        viewModel = RegisterPatientViewModel()
+        viewModel = RegisterLoginViewModel()
         
         guard let nome = nomeCompletoPacientTextField.text,
               let email = emailTextField.text,
-              let cpf = Int(cpfTextField.text ?? "0"),
-              let telefone = Int(telefoneTextField.text ?? "0"),
+              let cpf = cpfTextField.text,
+              let telefone = telefoneTextField.text,
               let senha = senhaTextField.text else { return }
         
         let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)

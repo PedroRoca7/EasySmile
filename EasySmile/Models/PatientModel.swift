@@ -11,11 +11,11 @@ class Patient {
     
     var nome: String
     var email: String
-    var cpf: Int
-    var telefone: Int
+    var cpf: String
+    var telefone: String
     var senha: String
     
-    init(nome: String, email: String, cpf: Int, telefone: Int, senha: String) {
+    init(nome: String, email: String, cpf: String, telefone: String, senha: String) {
         self.nome = nome
         self.email = email
         self.cpf = cpf

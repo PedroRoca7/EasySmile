@@ -256,11 +256,51 @@
                     <connections>
                         <outlet property="emailTextField" destination="zq2-jR-MJH" id="SO6-eX-xUv"/>
                         <outlet property="senhaTextField" destination="J6F-Fr-zEd" id="0Vk-gG-1OX"/>
+                        <segue destination="Xby-bT-Ioq" kind="show" identifier="MainMenuSegue" id="pft-uY-XAE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uFg-Kz-FcK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2234" y="-277"/>
+        </scene>
+        <!--Main Menu View Controller-->
+        <scene sceneID="z4y-Ic-BbE">
+            <objects>
+                <viewController storyboardIdentifier="MainMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xby-bT-Ioq" customClass="MainMenuViewController" customModule="EasySmile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kwh-o4-ve2">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundTelaLogin" translatesAutoresizingMaskIntoConstraints="NO" id="fTk-ti-DUP">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsZ-sx-ABG">
+                                <rect key="frame" x="30" y="205" width="70" height="31.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
+                                <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Eq4-nq-FTD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KsZ-sx-ABG" firstAttribute="top" secondItem="Eq4-nq-FTD" secondAttribute="top" constant="50" id="7Ac-O5-E9c"/>
+                            <constraint firstAttribute="trailing" secondItem="fTk-ti-DUP" secondAttribute="trailing" id="Fsg-Ms-LXk"/>
+                            <constraint firstItem="Eq4-nq-FTD" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="KsZ-sx-ABG" secondAttribute="trailing" constant="293" id="GZg-DP-9fq"/>
+                            <constraint firstItem="fTk-ti-DUP" firstAttribute="top" secondItem="Kwh-o4-ve2" secondAttribute="top" id="KeF-1X-zio"/>
+                            <constraint firstItem="KsZ-sx-ABG" firstAttribute="leading" secondItem="Eq4-nq-FTD" secondAttribute="leading" constant="30" id="hHW-tV-ugk"/>
+                            <constraint firstItem="fTk-ti-DUP" firstAttribute="leading" secondItem="Kwh-o4-ve2" secondAttribute="leading" id="w2f-ga-PDP"/>
+                            <constraint firstAttribute="bottom" secondItem="fTk-ti-DUP" secondAttribute="bottom" id="z4D-Ma-WxM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" style="editor" id="Ul9-1B-bB4"/>
+                    <connections>
+                        <outlet property="namePatientLabel" destination="KsZ-sx-ABG" id="tbP-Mg-lru"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23C-8Z-XU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3527" y="-277"/>
         </scene>
         <!--Cadastro Paciente-->
         <scene sceneID="8uB-7g-SM1">
