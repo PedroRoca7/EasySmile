@@ -11,7 +11,7 @@ class Alert {
     static func showBasicAlert(title: String, message: String, viewController: UIViewController) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-            // O código para ser executado quando o usuário clicar no botão "OK" do alerta
+           
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let screenLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ScreenLoginViewController")
             viewController.navigationController?.pushViewController(screenLoginViewController, animated: true)
@@ -28,12 +28,12 @@ class Alert {
         alertController.addAction(tryAgainAction)
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { _ in
-            // Navegar para a tela de "Cancelar"
-            let cancelViewController = InitialScreenViewController()
-            viewController.navigationController?.pushViewController(cancelViewController, animated: false)
+           
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let cancelViewController = storyBoard.instantiateViewController(withIdentifier: "InitialScreenViewController")
+            viewController.navigationController?.pushViewController(cancelViewController, animated: true)
         }
         alertController.addAction(cancelAction)
-        
         viewController.present(alertController, animated: true, completion: nil)
     }
 }

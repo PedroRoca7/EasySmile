@@ -12,7 +12,7 @@
         <!--Initial Screen View Controller-->
         <scene sceneID="r6X-Xe-nVE">
             <objects>
-                <viewController id="o7h-XT-iux" customClass="InitialScreenViewController" customModule="EasySmile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialScreenViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="o7h-XT-iux" customClass="InitialScreenViewController" customModule="EasySmile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GM3-AC-IfD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

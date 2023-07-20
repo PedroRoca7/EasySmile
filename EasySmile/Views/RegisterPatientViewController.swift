@@ -84,11 +84,11 @@ class RegisterPatientViewController: UIViewController {
         
         let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)
         
-        viewModel?.addPatient(patient: patient, onComplete: { result in
+        viewModel?.registerPatientDb(patient: patient, onComplete: { result in
             if result {
-                Alert.showBasicAlert(title: "Sucesso", message: "sucesso", viewController: self)
+                Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
             } else {
-                Alert.showActionSheet(title: "Erro", message: "erro", viewController: self)
+                Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
             }
         })
         

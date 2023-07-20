@@ -12,28 +12,34 @@ import FirebaseFirestore
 
 class RegisterPatientViewModel {
     
-    let db = Firestore.firestore()
     
-    func addPatient(patient: Patient, onComplete: @escaping (Bool) -> Void) {
+    
+    func registerPatientDb(patient: Patient, onComplete: @escaping (Bool) -> Void) {
         
-        let usuarioData: [String: Any] = [
-            "nome": patient.nome,
-            "email": patient.email,
-            "cpf": patient.cpf,
-            "telefone": patient.telefone,
-            "senha": patient.senha
-        ]
-        
-        db.collection("Pacientes").addDocument(data: usuarioData) { error in
+        Auth.auth().createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
+            
             if let error = error {
-                print("Erro ao cadastrar Paciente \(error.localizedDescription)")
-                onComplete(false)
-            } else {
-                print("Paciente cadastrado com sucesso")
-                onComplete(true)
-                   
-                    
+                print("Erro ao cadastrar conta: \(error.localizedDescription)")
+            } else if let user = result?.user {
+                let userID = user.uid
                 
+                let userData: [String: Any] = [
+                    "nome": patient.nome,
+                    "email": patient.email,
+                    "cpf": patient.cpf,
+                    "telefone": patient.telefone,
+                ]
+                
+                let db = Firestore.firestore()
+                
+                db.collection("Pacientes").document(userID).setData(userData) { error in
+                    if let error = error {
+                        print("Erro ao cadastrar Paciente: \(error.localizedDescription)")
+                        onComplete(false)
+                    } else {
+                        onComplete(true)
+                    }
+                }
             }
         }
     }
