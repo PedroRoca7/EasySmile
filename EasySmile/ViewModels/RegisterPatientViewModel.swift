@@ -14,7 +14,7 @@ class RegisterPatientViewModel {
     
     let db = Firestore.firestore()
     
-    func addPatient(patient: Patient) {
+    func addPatient(patient: Patient, onComplete: @escaping (Bool) -> Void) {
         
         let usuarioData: [String: Any] = [
             "nome": patient.nome,
@@ -27,8 +27,13 @@ class RegisterPatientViewModel {
         db.collection("Pacientes").addDocument(data: usuarioData) { error in
             if let error = error {
                 print("Erro ao cadastrar Paciente \(error.localizedDescription)")
+                onComplete(false)
             } else {
                 print("Paciente cadastrado com sucesso")
+                onComplete(true)
+                   
+                    
+                
             }
         }
     }

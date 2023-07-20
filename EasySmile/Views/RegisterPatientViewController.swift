@@ -11,7 +11,7 @@ import UIKit
 
 
 class RegisterPatientViewController: UIViewController {
-
+    
     @IBOutlet weak var nomeCompletoPacientTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var cpfTextField: UITextField!
@@ -23,8 +23,14 @@ class RegisterPatientViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         addObservadoresTextField()
-        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        removeObservadoresTextField()
     }
     
     func addObservadoresTextField() {
@@ -35,12 +41,20 @@ class RegisterPatientViewController: UIViewController {
         senhaTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
+    func removeObservadoresTextField() {
+        nomeCompletoPacientTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        emailTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        cpfTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        telefoneTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        senhaTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
     @objc func textFieldDidChange() {
-       
+        
         let textFields: [UITextField] = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
-
+        
         var allFieldsFilled = true
-
+        
         for textField in textFields {
             if let text = textField.text, text.isEmpty {
                 allFieldsFilled = false
@@ -56,8 +70,8 @@ class RegisterPatientViewController: UIViewController {
             cadastrarButton.backgroundColor = .darkGray
         }
     }
-
-
+    
+    
     @IBAction func cadastrarPaciente(_ sender: Any) {
         
         viewModel = RegisterPatientViewModel()
@@ -69,7 +83,16 @@ class RegisterPatientViewController: UIViewController {
               let senha = senhaTextField.text else { return }
         
         let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)
-            
-        viewModel?.addPatient(patient: patient)
+        
+        viewModel?.addPatient(patient: patient, onComplete: { result in
+            if result {
+                Alert.showBasicAlert(title: "Sucesso", message: "sucesso", viewController: self)
+            } else {
+                Alert.showActionSheet(title: "Erro", message: "erro", viewController: self)
+            }
+        })
+        
+        
     }
 }
+
