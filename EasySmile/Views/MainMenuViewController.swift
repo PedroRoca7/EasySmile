@@ -15,7 +15,8 @@ class MainMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        namePatientLabel.text = patientData?.nome
+        guard let patientData = patientData else { return }
+        namePatientLabel.text = ("Olá \(patientData.nome)")
     }
 
 }

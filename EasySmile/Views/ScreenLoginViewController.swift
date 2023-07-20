@@ -37,13 +37,10 @@ class ScreenLoginViewController: UIViewController {
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
             }
             if let patientData = patientData {
-                self.patient?.nome = patientData.nome
-                self.patient?.email = patientData.email
-                self.patient?.cpf = patientData.cpf
-                self.patient?.telefone = patientData.telefone
+                self.patient = Patient(nome: patientData.nome, email: patientData.email, cpf: patientData.cpf, telefone: patientData.telefone, senha: "")
+                print(self.patient ?? "nulo")
                 self.performSegue(withIdentifier: "MainMenuSegue", sender: self.patient)
             }
-            
         })
     }
     
