@@ -12,10 +12,12 @@ import FirebaseFirestore
 
 class RegisterLoginViewModel {
     
-    func login(email: String, senha: String, completion: @escaping (Patient?, Error?) -> Void) {
+    public func login(email: String, senha: String, completion: @escaping (Patient?, Error?) -> Void) {
+        
         Auth.auth().signIn(withEmail: email, password: senha) { (result, error) in
             if let error = error {
                 print("Erro ao fazer login: \(error.localizedDescription)")
+                completion(nil, error)
             } else if let user = result?.user {
                 let userID = user.uid
                 
@@ -40,7 +42,7 @@ class RegisterLoginViewModel {
         }
     }
     
-    func registerPatientDb(patient: Patient, onComplete: @escaping (Bool) -> Void) {
+    public func registerPatientDb(patient: Patient, onComplete: @escaping (Bool) -> Void) {
         
         Auth.auth().createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
             
@@ -70,4 +72,61 @@ class RegisterLoginViewModel {
         }
     }
     
+    public func registerDentistDb(dentist: Dentist, onComplete: @escaping (Bool) -> Void) {
+        
+        Auth.auth().createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in
+            
+            if let error = error {
+                print("Erro ao cadastrar conta: \(error.localizedDescription)")
+            } else if let user = result?.user {
+                let userID = user.uid
+                
+                let userData: [String: Any] = [
+                    "nome": dentist.nome,
+                    "email": dentist.email,
+                    "cpf": dentist.cpf,
+                    "telefone": dentist.telefone,
+                    "numero da inscrição": dentist.numeroDaInscricao,
+                    "rua do consultório": dentist.ruaDoConsultorio
+                ]
+                
+                let db = Firestore.firestore()
+                
+                db.collection("Odontologistas").document(userID).setData(userData) { error in
+                    if let error = error {
+                        print("Erro ao cadastrar Odontologista: \(error.localizedDescription)")
+                        onComplete(false)
+                    } else {
+                        onComplete(true)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func checkUserCollection(complete: @escaping (Bool) -> Void) {
+        guard let userID = Auth.auth().currentUser?.uid else {
+            print("Erro: nenhum usuário logado.")
+            return
+        }
+        
+        let db = Firestore.firestore()
+        
+        let pacientRef = db.collection("Pacientes").document(userID)
+        pacientRef.getDocument { document, error in
+            if let document = document, document.exists {
+                complete(true)
+            } else {
+                let dentistRef = db.collection("Odontologistas").document(userID)
+                dentistRef.getDocument { document, error in
+                    if let document = document, document.exists {
+                        complete(false)
+                    } else {
+                        print("Usuário não encontrado em nenhuma coleção.")
+                    }
+                }
+            }
+        }
+        
+    }
 }

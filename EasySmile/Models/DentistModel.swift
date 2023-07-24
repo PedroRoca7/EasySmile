@@ -11,13 +11,13 @@ class Dentist {
     
     var nome: String
     var email: String
-    var cpf: Int
-    var telefone: Int
+    var cpf: String
+    var telefone: String
     var senha: String
     var ruaDoConsultorio: String
-    var numeroDaInscricao: Int
+    var numeroDaInscricao: String
     
-    init(nome: String, email: String, cpf: Int, telefone: Int, senha: String, ruaDoConsultorio: String, numeroDaInscricao: Int) {
+    init(nome: String, email: String, cpf: String, telefone: String, senha: String, ruaDoConsultorio: String, numeroDaInscricao: String) {
         self.nome = nome
         self.email = email
         self.cpf = cpf

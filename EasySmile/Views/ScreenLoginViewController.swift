@@ -31,14 +31,12 @@ class ScreenLoginViewController: UIViewController {
             return
         }
         
-        viewModel?.login(email: email, senha: senha, completion: { patientData, error in
+        viewModel?.login(email: email, senha: senha, completion: { userData, error in
             if let error = error {
                 print("Erro ao fazer login: \(error.localizedDescription)")
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
-            }
-            if let patientData = patientData {
-                self.patient = Patient(nome: patientData.nome, email: patientData.email, cpf: patientData.cpf, telefone: patientData.telefone, senha: "")
-                print(self.patient ?? "nulo")
+            } else if let userData = userData {
+                self.patient = Patient(nome: userData.nome, email: userData.email, cpf: userData.cpf, telefone: userData.telefone, senha: "")
                 self.performSegue(withIdentifier: "MainMenuSegue", sender: self.patient)
             }
         })
