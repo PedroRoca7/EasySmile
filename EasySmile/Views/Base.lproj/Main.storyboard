@@ -256,12 +256,29 @@
                     <connections>
                         <outlet property="emailTextField" destination="zq2-jR-MJH" id="SO6-eX-xUv"/>
                         <outlet property="senhaTextField" destination="J6F-Fr-zEd" id="0Vk-gG-1OX"/>
-                        <segue destination="Xby-bT-Ioq" kind="show" identifier="MainMenuSegue" id="pft-uY-XAE"/>
+                        <segue destination="Xby-bT-Ioq" kind="show" identifier="MainMenuPatientSegue" id="pft-uY-XAE"/>
+                        <segue destination="BjZ-dd-b24" kind="show" identifier="MainMenuDentistSegue" id="ouV-ah-mj7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uFg-Kz-FcK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2234" y="-277"/>
+        </scene>
+        <!--Main Menu Dentist View Controller-->
+        <scene sceneID="i2s-Rp-YS4">
+            <objects>
+                <viewController id="BjZ-dd-b24" customClass="MainMenuDentistViewController" customModule="EasySmile" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Phd-fs-rzV">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7En-jw-fJg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HKS-z3-Mzy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="78a-4e-waV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3210" y="24"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="z4y-Ic-BbE">
@@ -300,7 +317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23C-8Z-XU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3527" y="-277"/>
+            <point key="canvasLocation" x="3195" y="-626"/>
         </scene>
         <!--Cadastro Paciente-->
         <scene sceneID="8uB-7g-SM1">
@@ -673,6 +690,7 @@
                     <navigationItem key="navigationItem" title="Cadastro Odontologista" largeTitleDisplayMode="never" style="editor" id="hV8-ja-j3C"/>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="cadastrarButton" destination="sf2-7a-aLp" id="AzC-c8-uZz"/>
                         <outlet property="cpfTextField" destination="6ec-qg-i2S" id="vuW-6J-kkd"/>
                         <outlet property="emailTextField" destination="g6j-Ap-0Kj" id="pAV-N6-5dr"/>
                         <outlet property="nomeCompletoDentistTextField" destination="eE0-Sv-TLp" id="UGD-6W-o2j"/>

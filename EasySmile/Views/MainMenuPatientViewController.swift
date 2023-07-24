@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainMenuViewController: UIViewController {
+class MainMenuPatientViewController: UIViewController {
 
     @IBOutlet weak var namePatientLabel: UILabel!
     

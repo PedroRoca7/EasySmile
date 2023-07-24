@@ -12,29 +12,55 @@ import FirebaseFirestore
 
 class RegisterLoginViewModel {
     
-    public func login(email: String, senha: String, completion: @escaping (Patient?, Error?) -> Void) {
+    public func login(email: String, senha: String, completion: @escaping (Patient?,Dentist?, Error?) -> Void) {
         
         Auth.auth().signIn(withEmail: email, password: senha) { (result, error) in
             if let error = error {
                 print("Erro ao fazer login: \(error.localizedDescription)")
-                completion(nil, error)
+                completion(nil, nil, error)
             } else if let user = result?.user {
-                let userID = user.uid
-                
-                let db = Firestore.firestore()
-                
-                db.collection("Pacientes").document(userID).getDocument { document, error in
-                    if let document = document, document.exists {
-                        if let userData = document.data() {
-                            guard let nome = userData["nome"] as? String,
-                                  let email = userData["email"] as? String,
-                                  let cpf = userData["cpf"] as? String,
-                                  let telefone = userData["nome"] as? String else { return }
-                            let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: "")
-                            completion(patient, nil)
-                        } else {
-                            print("Documento do paciente não encontrado ou ocorreu um erro: \(error?.localizedDescription ?? "Erro desconhecido")")
-                            completion(nil, error)
+                self.checkUserCollection { result in
+                    if result {
+                        let userID = user.uid
+                        
+                        let db = Firestore.firestore()
+                        
+                        db.collection("Pacientes").document(userID).getDocument { document, error in
+                            if let document = document, document.exists {
+                                if let userData = document.data() {
+                                    guard let nome = userData["nome"] as? String,
+                                          let email = userData["email"] as? String,
+                                          let cpf = userData["cpf"] as? String,
+                                          let telefone = userData["telefone"] as? String else { return }
+                                    let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: "")
+                                    completion(patient, nil, nil)
+                                } else {
+                                    print("Documento do paciente não encontrado ou ocorreu um erro: \(error?.localizedDescription ?? "Erro desconhecido")")
+                                    completion(nil, nil, error)
+                                }
+                            }
+                        }
+                    } else {
+                        let userID = user.uid
+                        
+                        let db = Firestore.firestore()
+                        
+                        db.collection("Odontologistas").document(userID).getDocument { document, error in
+                            if let document = document, document.exists {
+                                if let userData = document.data() {
+                                    guard let nome = userData["nome"] as? String,
+                                          let email = userData["email"] as? String,
+                                          let cpf = userData["cpf"] as? String,
+                                          let telefone = userData["telefone"] as? String,
+                                          let numeroDaInscricaoConselho = userData["numeroDaInscricao"] as? String,
+                                          let ruaDoConsultorio = userData["ruaDoConsultorio"] as? String else { return }
+                                    let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: "", ruaDoConsultorio: ruaDoConsultorio, numeroDaInscricao: numeroDaInscricaoConselho)
+                                    completion(nil, dentist, nil)
+                                } else {
+                                    print("Documento do paciente não encontrado ou ocorreu um erro: \(error?.localizedDescription ?? "Erro desconhecido")")
+                                    completion(nil, nil, error)
+                                }
+                            }
                         }
                     }
                 }
@@ -86,8 +112,8 @@ class RegisterLoginViewModel {
                     "email": dentist.email,
                     "cpf": dentist.cpf,
                     "telefone": dentist.telefone,
-                    "numero da inscrição": dentist.numeroDaInscricao,
-                    "rua do consultório": dentist.ruaDoConsultorio
+                    "numeroDaInscricao": dentist.numeroDaInscricao,
+                    "ruaDoConsultorio": dentist.ruaDoConsultorio
                 ]
                 
                 let db = Firestore.firestore()

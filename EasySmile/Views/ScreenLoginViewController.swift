@@ -14,6 +14,7 @@ class ScreenLoginViewController: UIViewController {
     
     var viewModel: RegisterLoginViewModel?
     var patient: Patient?
+    var dentist: Dentist?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,25 +32,31 @@ class ScreenLoginViewController: UIViewController {
             return
         }
         
-        viewModel?.login(email: email, senha: senha, completion: { userData, error in
+        viewModel?.login(email: email, senha: senha, completion: { patient, dentist, error in
             if let error = error {
                 print("Erro ao fazer login: \(error.localizedDescription)")
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
-            } else if let userData = userData {
-                self.patient = Patient(nome: userData.nome, email: userData.email, cpf: userData.cpf, telefone: userData.telefone, senha: "")
-                self.performSegue(withIdentifier: "MainMenuSegue", sender: self.patient)
+            } else if let patient = patient {
+                self.patient = Patient(nome: patient.nome, email: patient.email, cpf: patient.cpf, telefone: patient.telefone, senha: "")
+                self.performSegue(withIdentifier: "MainMenuPatientSegue", sender: self.patient)
+            } else if let dentist = dentist {
+                self.dentist = Dentist(nome: dentist.nome, email: dentist.email, cpf: dentist.cpf, telefone: dentist.telefone, senha: "", ruaDoConsultorio: dentist.ruaDoConsultorio, numeroDaInscricao: dentist.numeroDaInscricao)
+                self.performSegue(withIdentifier: "MainMenuDentistSegue", sender: self.dentist)
             }
         })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MainMenuSegue" {
-            if let mainMenuViewController = segue.destination as? MainMenuViewController {
+        if segue.identifier == "MainMenuPatientSegue" {
+            if let mainMenuViewController = segue.destination as? MainMenuPatientViewController {
                 mainMenuViewController.patientData = self.patient
-            }
+            } else if segue.identifier == "MainMenuDentistSegue" {
+                if let mainMenuViewController = segue.destination as? MainMenuDentistViewController {
+                    mainMenuViewController.dentistData = self.dentist
+                }
+              }
         }
     }
-    
     @IBAction func forgotPassword(_ sender: Any) {
     }
     
