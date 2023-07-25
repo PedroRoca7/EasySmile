@@ -8,7 +8,7 @@
 import UIKit
 
 class RegisterDentistViewController: UIViewController {
-
+    
     @IBOutlet weak var nomeCompletoDentistTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var cpfTextField: UITextField!
@@ -19,15 +19,19 @@ class RegisterDentistViewController: UIViewController {
     @IBOutlet weak var cadastrarButton: UIButton!
     @IBOutlet weak var ufButton: UIButton!
     @IBOutlet weak var ufPickerView: UIPickerView!
+    @IBOutlet weak var cepTextField: UITextField!
     
     var ufs: [String] = []
     var viewModel: RegisterLoginViewModel?
+    var cep: Cep?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = RegisterLoginViewModel()
         ufs = loadUfs()
         hiddenPickerView()
-        pickerViewDelegateDataSource()
+        configDelegatesDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,9 +42,10 @@ class RegisterDentistViewController: UIViewController {
         removeObservadoresTextField()
     }
     
-    private func pickerViewDelegateDataSource() {
+    private func configDelegatesDataSource() {
         ufPickerView.delegate = self
         ufPickerView.dataSource = self
+        cepTextField.delegate = self
     }
     
     private func hiddenPickerView() {
@@ -93,14 +98,18 @@ class RegisterDentistViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        resignFirstResponder()
+    }
+    
     @IBAction func ufButtonPressed(_ sender: Any) {
         ufPickerView.isHidden = !ufPickerView.isHidden
     }
     
     
     @IBAction func cadastrarDentista(_ sender: Any) {
-            
-        viewModel = RegisterLoginViewModel()
+        
+        
         
         guard let nome = nomeCompletoDentistTextField.text,
               let email = emailTextField.text,
@@ -112,7 +121,7 @@ class RegisterDentistViewController: UIViewController {
               let senha = senhaTextField.text else { return }
         
         let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, numeroDaInscricao: numeroInscricaoConselho, uf: uf, ruaDoConsultorio: ruaConsultorio, senha: senha)
-
+        
         viewModel?.registerDentistDb(dentist: dentist, onComplete: { result in
             if result {
                 Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
@@ -142,11 +151,42 @@ extension RegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataS
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return ufs[row]
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedUf = ufs[row]
         ufButton.setTitle(selectedUf, for: .normal)
         hiddenPickerView()
     }
     
+}
+
+extension RegisterDentistViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == cepTextField {
+            let newCep = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            
+            if newCep.count == 8 {
+                view.endEditing(true)
+                viewModel?.buscarCep(cep: newCep, completion: { dataCep in
+                    if dataCep != nil {
+                        DispatchQueue.main.async {
+                            self.ruaDoConsultorioTextField.text = dataCep?.logradouro
+                            self.ufButton.setTitle(dataCep?.uf, for: .normal)
+                            self.ufButton.isEnabled = false
+                            self.ruaDoConsultorioTextField.isEnabled = false
+                        }
+                    }
+                })
+            } else {
+                self.ufButton.isEnabled = true
+                self.ruaDoConsultorioTextField.isEnabled = true
+                self.ufButton.setTitle("", for: .normal)
+                self.ruaDoConsultorioTextField.text = ""
+            }
+            
+        }
+        return true
+    }
 }

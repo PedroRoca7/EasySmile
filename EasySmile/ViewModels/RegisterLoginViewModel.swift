@@ -12,6 +12,9 @@ import FirebaseFirestore
 
 class RegisterLoginViewModel {
     
+    var logradouro: String?
+    var uf: String?
+    
     public func login(email: String, senha: String, completion: @escaping (Patient?,Dentist?, Error?) -> Void) {
         
         Auth.auth().signIn(withEmail: email, password: senha) { (result, error) in
@@ -157,4 +160,15 @@ class RegisterLoginViewModel {
         }
         
     }
+    
+    public func buscarCep(cep: String, completion: @escaping (Cep?) -> Void) {
+        ApiCep.searchCep(cep: cep) {  dataCep in
+            if let cep = dataCep {
+                completion(cep)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
 }
