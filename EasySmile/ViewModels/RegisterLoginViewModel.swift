@@ -53,8 +53,9 @@ class RegisterLoginViewModel {
                                           let cpf = userData["cpf"] as? String,
                                           let telefone = userData["telefone"] as? String,
                                           let numeroDaInscricaoConselho = userData["numeroDaInscricao"] as? String,
+                                          let uf = userData["uf"] as? String,
                                           let ruaDoConsultorio = userData["ruaDoConsultorio"] as? String else { return }
-                                    let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: "", ruaDoConsultorio: ruaDoConsultorio, numeroDaInscricao: numeroDaInscricaoConselho)
+                                    let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, numeroDaInscricao: numeroDaInscricaoConselho, uf: uf, ruaDoConsultorio: ruaDoConsultorio, senha: "")
                                     completion(nil, dentist, nil)
                                 } else {
                                     print("Documento do paciente não encontrado ou ocorreu um erro: \(error?.localizedDescription ?? "Erro desconhecido")")
@@ -113,6 +114,7 @@ class RegisterLoginViewModel {
                     "cpf": dentist.cpf,
                     "telefone": dentist.telefone,
                     "numeroDaInscricao": dentist.numeroDaInscricao,
+                    "uf": dentist.uf,
                     "ruaDoConsultorio": dentist.ruaDoConsultorio
                 ]
                 

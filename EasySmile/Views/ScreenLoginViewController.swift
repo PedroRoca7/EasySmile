@@ -40,7 +40,7 @@ class ScreenLoginViewController: UIViewController {
                 self.patient = Patient(nome: patient.nome, email: patient.email, cpf: patient.cpf, telefone: patient.telefone, senha: "")
                 self.performSegue(withIdentifier: "MainMenuPatientSegue", sender: self.patient)
             } else if let dentist = dentist {
-                self.dentist = Dentist(nome: dentist.nome, email: dentist.email, cpf: dentist.cpf, telefone: dentist.telefone, senha: "", ruaDoConsultorio: dentist.ruaDoConsultorio, numeroDaInscricao: dentist.numeroDaInscricao)
+                self.dentist = Dentist(nome: dentist.nome, email: dentist.email, cpf: dentist.cpf, telefone: dentist.telefone, numeroDaInscricao: dentist.numeroDaInscricao, uf: dentist.uf, ruaDoConsultorio: dentist.ruaDoConsultorio, senha: "")
                 self.performSegue(withIdentifier: "MainMenuDentistSegue", sender: self.dentist)
             }
         })
