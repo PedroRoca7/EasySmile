@@ -21,19 +21,25 @@ class RegisterPatientViewController: UIViewController {
     
     var viewModel: RegisterLoginViewModel?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let textFields: [UITextField] = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
+        addObservadoresTextField(textFileds: textFields)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        addObservadoresTextField()
-    }
+
     
     override func viewDidDisappear(_ animated: Bool) {
         removeObservadoresTextField()
     }
     
-    func addObservadoresTextField() {
+    func addObservadoresTextField(textFileds: [UITextField]) {
+        for textField in textFileds {
+            textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
+        
         nomeCompletoPacientTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         cpfTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -49,9 +55,7 @@ class RegisterPatientViewController: UIViewController {
         senhaTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    @objc func textFieldDidChange() {
-        
-        let textFields: [UITextField] = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
+    @objc func textFieldDidChange(textFields: [UITextField]) {
         
         var allFieldsFilled = true
         

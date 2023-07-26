@@ -19,6 +19,7 @@
 		CE62E21C2A675F3C00BD7C2E /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = CE62E21B2A675F3C00BD7C2E /* FirebaseDatabase */; };
 		CE62E21E2A675F3C00BD7C2E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CE62E21D2A675F3C00BD7C2E /* FirebaseFirestore */; };
 		CE6C8DEA2A6EFCC100D9F600 /* MainMenuDentistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6C8DE92A6EFCC100D9F600 /* MainMenuDentistViewController.swift */; };
+		CE7850C12A7174D60044930E /* UiViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7850C02A7174D60044930E /* UiViewController+Extension.swift */; };
 		CE92DD182A69926000D58785 /* MainMenuPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92DD172A69926000D58785 /* MainMenuPatientViewController.swift */; };
 		CE9C85CF2A61D2040028FC24 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */; };
 		CE9C85D12A61D2040028FC24 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85D02A61D2040028FC24 /* SceneDelegate.swift */; };
@@ -60,6 +61,7 @@
 		CE5346072A687E8100748604 /* RegisterLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLoginViewModel.swift; sourceTree = "<group>"; };
 		CE5346092A6881DB00748604 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		CE6C8DE92A6EFCC100D9F600 /* MainMenuDentistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDentistViewController.swift; sourceTree = "<group>"; };
+		CE7850C02A7174D60044930E /* UiViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiViewController+Extension.swift"; sourceTree = "<group>"; };
 		CE92DD172A69926000D58785 /* MainMenuPatientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuPatientViewController.swift; sourceTree = "<group>"; };
 		CE9C85CB2A61D2040028FC24 /* EasySmile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasySmile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9C85CE2A61D2040028FC24 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5346092A6881DB00748604 /* Alert.swift */,
+				CE7850C02A7174D60044930E /* UiViewController+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			files = (
 				CE2560222A7044BD00530AF2 /* CepModel.swift in Sources */,
 				CE9C85D32A61D2040028FC24 /* InitialScreenViewController.swift in Sources */,
+				CE7850C12A7174D60044930E /* UiViewController+Extension.swift in Sources */,
 				CE5346082A687E8100748604 /* RegisterLoginViewModel.swift in Sources */,
 				CE6C8DEA2A6EFCC100D9F600 /* MainMenuDentistViewController.swift in Sources */,
 				CE92DD182A69926000D58785 /* MainMenuPatientViewController.swift in Sources */,

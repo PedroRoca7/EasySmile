@@ -271,10 +271,103 @@
                     <view key="view" contentMode="scaleToFill" id="Phd-fs-rzV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundTelaLogin" translatesAutoresizingMaskIntoConstraints="NO" id="SRw-tE-3dN">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDL-bQ-thf">
+                                <rect key="frame" x="30" y="256.33333333333331" width="144" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="YOh-ZO-LeH"/>
+                                    <constraint firstAttribute="height" constant="125" id="cw1-ul-ZCL"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iconePerfil"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwp-uM-xek">
+                                <rect key="frame" x="219" y="256.33333333333331" width="144" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="uAe-4f-EBy"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="wyX-x7-u4R"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iconeLupa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gT-Db-jb5">
+                                <rect key="frame" x="30" y="441.33333333333331" width="144" height="124.99999999999994"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="Jbe-mb-PKK"/>
+                                    <constraint firstAttribute="height" constant="125" id="dPr-7e-U5c"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iconeLupa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gx0-1x-GPF">
+                                <rect key="frame" x="219" y="441.33333333333331" width="144" height="124.99999999999994"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="7Fb-iA-QtN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="gTe-hI-Qjd"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iconeLupa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sSZ-zs-JSD">
+                                <rect key="frame" x="30" y="175" width="70" height="31.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="24"/>
+                                <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7En-jw-fJg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4gT-Db-jb5" firstAttribute="top" secondItem="eDL-bQ-thf" secondAttribute="bottom" constant="60" id="6pK-5u-ZMk"/>
+                            <constraint firstItem="7En-jw-fJg" firstAttribute="trailing" secondItem="vwp-uM-xek" secondAttribute="trailing" constant="30" id="DOq-xj-u1f"/>
+                            <constraint firstItem="4gT-Db-jb5" firstAttribute="leading" secondItem="eDL-bQ-thf" secondAttribute="leading" id="EPM-Qb-Apm"/>
+                            <constraint firstItem="sSZ-zs-JSD" firstAttribute="leading" secondItem="7En-jw-fJg" secondAttribute="leading" constant="30" id="EUW-eC-CXb"/>
+                            <constraint firstItem="sSZ-zs-JSD" firstAttribute="top" secondItem="7En-jw-fJg" secondAttribute="top" constant="20" id="Eex-hE-Xmq"/>
+                            <constraint firstItem="vwp-uM-xek" firstAttribute="centerY" secondItem="eDL-bQ-thf" secondAttribute="centerY" id="H0F-bj-IlH"/>
+                            <constraint firstItem="SRw-tE-3dN" firstAttribute="leading" secondItem="Phd-fs-rzV" secondAttribute="leading" id="IxP-9l-PfW"/>
+                            <constraint firstAttribute="bottom" secondItem="SRw-tE-3dN" secondAttribute="bottom" id="Jgs-nT-BeE"/>
+                            <constraint firstItem="eDL-bQ-thf" firstAttribute="leading" secondItem="7En-jw-fJg" secondAttribute="leading" constant="30" id="OAZ-tg-dQW"/>
+                            <constraint firstItem="Gx0-1x-GPF" firstAttribute="top" secondItem="vwp-uM-xek" secondAttribute="bottom" constant="60" id="U7L-uK-NfO"/>
+                            <constraint firstItem="7En-jw-fJg" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="sSZ-zs-JSD" secondAttribute="trailing" constant="293" id="Wy5-Iv-SUe"/>
+                            <constraint firstItem="Gx0-1x-GPF" firstAttribute="leading" relation="lessThanOrEqual" secondItem="4gT-Db-jb5" secondAttribute="trailing" constant="45" id="bye-TN-S7I"/>
+                            <constraint firstItem="vwp-uM-xek" firstAttribute="leading" relation="lessThanOrEqual" secondItem="eDL-bQ-thf" secondAttribute="trailing" constant="45" id="nJL-qs-dtB"/>
+                            <constraint firstItem="SRw-tE-3dN" firstAttribute="top" secondItem="Phd-fs-rzV" secondAttribute="top" id="tnI-7d-vF2"/>
+                            <constraint firstItem="Gx0-1x-GPF" firstAttribute="trailing" secondItem="vwp-uM-xek" secondAttribute="trailing" id="uRV-zO-cXU"/>
+                            <constraint firstItem="eDL-bQ-thf" firstAttribute="top" secondItem="sSZ-zs-JSD" secondAttribute="bottom" constant="50" id="v5E-Ks-3JQ"/>
+                            <constraint firstAttribute="trailing" secondItem="SRw-tE-3dN" secondAttribute="trailing" id="xnN-Yc-2PR"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="HKS-z3-Mzy"/>
+                    <navigationItem key="navigationItem" style="editor" id="HKS-z3-Mzy"/>
+                    <connections>
+                        <outlet property="nameDentistLabel" destination="sSZ-zs-JSD" id="0Xd-Df-aG8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78a-4e-waV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -297,16 +390,51 @@
                                 <color key="textColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RKM-qI-LyC">
+                                <rect key="frame" x="35" y="366.33333333333331" width="144" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="EdL-TJ-BQs"/>
+                                    <constraint firstAttribute="height" constant="125" id="PkF-8o-8f8"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iconePerfil"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uw0-Hc-TAN">
+                                <rect key="frame" x="214" y="366.33333333333331" width="144" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="MkF-3O-wLj"/>
+                                    <constraint firstAttribute="height" constant="125" id="f4m-uY-V0t"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="iconeLupa"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Eq4-nq-FTD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Uw0-Hc-TAN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RKM-qI-LyC" secondAttribute="trailing" constant="30" id="4oh-GL-gjn"/>
+                            <constraint firstItem="RKM-qI-LyC" firstAttribute="leading" secondItem="Eq4-nq-FTD" secondAttribute="leading" constant="35" id="6bm-cl-Okq"/>
                             <constraint firstItem="KsZ-sx-ABG" firstAttribute="top" secondItem="Eq4-nq-FTD" secondAttribute="top" constant="50" id="7Ac-O5-E9c"/>
                             <constraint firstAttribute="trailing" secondItem="fTk-ti-DUP" secondAttribute="trailing" id="Fsg-Ms-LXk"/>
                             <constraint firstItem="Eq4-nq-FTD" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="KsZ-sx-ABG" secondAttribute="trailing" constant="293" id="GZg-DP-9fq"/>
                             <constraint firstItem="fTk-ti-DUP" firstAttribute="top" secondItem="Kwh-o4-ve2" secondAttribute="top" id="KeF-1X-zio"/>
+                            <constraint firstItem="Uw0-Hc-TAN" firstAttribute="centerY" secondItem="RKM-qI-LyC" secondAttribute="centerY" id="U9l-qA-z4G"/>
                             <constraint firstItem="KsZ-sx-ABG" firstAttribute="leading" secondItem="Eq4-nq-FTD" secondAttribute="leading" constant="30" id="hHW-tV-ugk"/>
+                            <constraint firstItem="Eq4-nq-FTD" firstAttribute="trailing" secondItem="Uw0-Hc-TAN" secondAttribute="trailing" constant="35" id="klg-cX-CD2"/>
                             <constraint firstItem="fTk-ti-DUP" firstAttribute="leading" secondItem="Kwh-o4-ve2" secondAttribute="leading" id="w2f-ga-PDP"/>
+                            <constraint firstItem="RKM-qI-LyC" firstAttribute="top" secondItem="KsZ-sx-ABG" secondAttribute="bottom" constant="130" id="wMC-KE-4nj"/>
                             <constraint firstAttribute="bottom" secondItem="fTk-ti-DUP" secondAttribute="bottom" id="z4D-Ma-WxM"/>
                         </constraints>
                     </view>
@@ -819,9 +947,7 @@
                             <constraint firstAttribute="bottom" secondItem="v7I-Rz-c3N" secondAttribute="bottom" id="x7M-4a-DOS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="c5A-Mo-vLa">
-                        <barButtonItem key="backBarButtonItem" title="&quot;&quot;" id="ICe-Ef-sRb"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" style="editor" id="c5A-Mo-vLa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awv-2o-Lec" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -854,6 +980,8 @@
     </scenes>
     <resources>
         <image name="backgroundTelaLogin" width="3000" height="2000"/>
+        <image name="iconeLupa" width="120" height="120"/>
+        <image name="iconePerfil" width="120" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
