@@ -373,10 +373,10 @@
             </objects>
             <point key="canvasLocation" x="3210" y="24"/>
         </scene>
-        <!--Main Menu View Controller-->
+        <!--Main Menu Patient View Controller-->
         <scene sceneID="z4y-Ic-BbE">
             <objects>
-                <viewController storyboardIdentifier="MainMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xby-bT-Ioq" customClass="MainMenuViewController" customModule="EasySmile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainMenuViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xby-bT-Ioq" customClass="MainMenuPatientViewController" customModule="EasySmile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kwh-o4-ve2">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -440,7 +440,7 @@
                     </view>
                     <navigationItem key="navigationItem" style="editor" id="Ul9-1B-bB4"/>
                     <connections>
-                        <outlet property="namePatientLabel" destination="KsZ-sx-ABG" id="tbP-Mg-lru"/>
+                        <outlet property="namePatientLabel" destination="KsZ-sx-ABG" id="cC5-mv-Zkn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23C-8Z-XU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -548,8 +548,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="cadastrarPaciente:" destination="ZFy-hj-5QF" eventType="touchUpInside" id="dA6-yy-0Bn"/>
-                                    <action selector="loginPressed:" destination="PEm-NX-AWZ" eventType="touchUpInside" id="Dl2-FS-f6c"/>
+                                    <action selector="registerPatient:" destination="ZFy-hj-5QF" eventType="touchUpInside" id="upf-ow-8Nq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -715,8 +714,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="cadastrarDentista:" destination="mtv-I2-XLw" eventType="touchUpInside" id="YFK-vm-f88"/>
-                                                    <action selector="loginPressed:" destination="PEm-NX-AWZ" eventType="touchUpInside" id="Ukr-3O-ByD"/>
+                                                    <action selector="registerDentist:" destination="mtv-I2-XLw" eventType="touchUpInside" id="6Hf-LF-Bbj"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zU2-M6-wKP">
@@ -744,7 +742,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="ufButtonPressed:" destination="mtv-I2-XLw" eventType="touchUpInside" id="33s-6v-5WE"/>
+                                                    <action selector="ufPressedButton:" destination="mtv-I2-XLw" eventType="touchUpInside" id="RCs-hO-Nc7"/>
                                                 </connections>
                                             </button>
                                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNT-Xa-9Sx">
@@ -898,7 +896,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="loginPressed:" destination="PEm-NX-AWZ" eventType="touchUpInside" id="SNa-Gp-cdv"/>
                                     <segue destination="ZFy-hj-5QF" kind="show" id="LK5-np-XTp"/>
                                 </connections>
                             </button>
@@ -919,7 +916,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="loginPressed:" destination="PEm-NX-AWZ" eventType="touchUpInside" id="qnI-1c-jMS"/>
                                     <segue destination="mtv-I2-XLw" kind="show" id="XlY-XO-OtW"/>
                                 </connections>
                             </button>

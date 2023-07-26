@@ -24,7 +24,7 @@ class RegisterDentistViewController: UIViewController {
     var ufs: [String] = []
     var viewModel: RegisterLoginViewModel?
     var cep: Cep?
-    
+    var textFields: [UITextField] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +32,13 @@ class RegisterDentistViewController: UIViewController {
         ufs = loadUfs()
         hiddenPickerView()
         configDelegatesDataSource()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        addObservadoresTextField()
+        textFields = [nomeCompletoDentistTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField, numeroDaInscricaoConselhoTextField, ruaDoConsultorioTextField]
+        addObservadoresTextField(textFields: textFields)
+        hideKeyBoardWhenTapped()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        removeObservadoresTextField()
+        removeObservadoresTextField(textFields: textFields)
     }
     
     private func configDelegatesDataSource() {
@@ -52,24 +51,16 @@ class RegisterDentistViewController: UIViewController {
         ufPickerView.isHidden = true
     }
     
-    private func addObservadoresTextField() {
-        nomeCompletoDentistTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cpfTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        telefoneTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        senhaTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        numeroDaInscricaoConselhoTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        ruaDoConsultorioTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    private func addObservadoresTextField(textFields: [UITextField]) {
+        for textField in textFields {
+            textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
     }
     
-    private func removeObservadoresTextField() {
-        nomeCompletoDentistTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        emailTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cpfTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        telefoneTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        senhaTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        numeroDaInscricaoConselhoTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        ruaDoConsultorioTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    private func removeObservadoresTextField(textFields: [UITextField]) {
+        for textField in textFields {
+            textField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
     }
     
     private func loadUfs() -> [String] {
@@ -77,9 +68,10 @@ class RegisterDentistViewController: UIViewController {
     }
     
     @objc func textFieldDidChange() {
-        
-        let textFields: [UITextField] = [nomeCompletoDentistTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField, numeroDaInscricaoConselhoTextField, ruaDoConsultorioTextField]
-        
+        checkTextFieldIsEmpty()
+    }
+    
+    private func checkTextFieldIsEmpty() {
         var allFieldsFilled = true
         
         for textField in textFields {
@@ -98,18 +90,11 @@ class RegisterDentistViewController: UIViewController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        resignFirstResponder()
-    }
-    
-    @IBAction func ufButtonPressed(_ sender: Any) {
+    @IBAction func ufPressedButton(_ sender: Any) {
         ufPickerView.isHidden = !ufPickerView.isHidden
     }
     
-    
-    @IBAction func cadastrarDentista(_ sender: Any) {
-        
-        
+    @IBAction func registerDentist(_ sender: Any) {
         
         guard let nome = nomeCompletoDentistTextField.text,
               let email = emailTextField.text,
@@ -129,11 +114,9 @@ class RegisterDentistViewController: UIViewController {
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
             }
         })
-        
+    }
     }
     
-}
-
 extension RegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - UIPickerViewDataSource
@@ -162,6 +145,8 @@ extension RegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataS
 
 extension RegisterDentistViewController: UITextFieldDelegate {
     
+    // MARK: - UITextFieldDelegate
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == cepTextField {
@@ -185,7 +170,6 @@ extension RegisterDentistViewController: UITextFieldDelegate {
                 self.ufButton.setTitle("", for: .normal)
                 self.ruaDoConsultorioTextField.text = ""
             }
-            
         }
         return true
     }

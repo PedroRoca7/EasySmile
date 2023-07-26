@@ -7,9 +7,6 @@
 
 import UIKit
 
-
-
-
 class RegisterPatientViewController: UIViewController {
     
     @IBOutlet weak var nomeCompletoPacientTextField: UITextField!
@@ -20,43 +17,36 @@ class RegisterPatientViewController: UIViewController {
     @IBOutlet weak var cadastrarButton: UIButton!
     
     var viewModel: RegisterLoginViewModel?
-    
-    
+    var textFields: [UITextField] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let textFields: [UITextField] = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
+        textFields = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
         addObservadoresTextField(textFileds: textFields)
+        hideKeyBoardWhenTapped()
     }
-    
-
     
     override func viewDidDisappear(_ animated: Bool) {
-        removeObservadoresTextField()
+        removeObservadoresTextField(textFileds: textFields)
     }
     
-    func addObservadoresTextField(textFileds: [UITextField]) {
+    private func addObservadoresTextField(textFileds: [UITextField]) {
         for textField in textFileds {
             textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         }
-        
-        nomeCompletoPacientTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cpfTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        telefoneTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        senhaTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
-    func removeObservadoresTextField() {
-        nomeCompletoPacientTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        emailTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        cpfTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        telefoneTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        senhaTextField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    private func removeObservadoresTextField(textFileds: [UITextField]) {
+        for textFiled in textFileds {
+            textFiled.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
     }
     
-    @objc func textFieldDidChange(textFields: [UITextField]) {
-        
+    @objc func textFieldDidChange() {
+        checkTextFieldIsEmpty()
+    }
+    
+    private func checkTextFieldIsEmpty() {
         var allFieldsFilled = true
         
         for textField in textFields {
@@ -75,8 +65,7 @@ class RegisterPatientViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func cadastrarPaciente(_ sender: Any) {
+    @IBAction func registerPatient(_ sender: Any) {
         
         viewModel = RegisterLoginViewModel()
         
@@ -95,8 +84,6 @@ class RegisterPatientViewController: UIViewController {
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
             }
         })
-        
-        
     }
 }
 

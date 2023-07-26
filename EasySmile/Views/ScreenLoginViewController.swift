@@ -18,7 +18,7 @@ class ScreenLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        hideKeyBoardWhenTapped()
     }
     
     @IBAction func loginPressed(_ sender: Any) {
@@ -50,13 +50,14 @@ class ScreenLoginViewController: UIViewController {
         if segue.identifier == "MainMenuPatientSegue" {
             if let mainMenuViewController = segue.destination as? MainMenuPatientViewController {
                 mainMenuViewController.patientData = self.patient
-            } else if segue.identifier == "MainMenuDentistSegue" {
+            }
+        } else if segue.identifier == "MainMenuDentistSegue" {
                 if let mainMenuViewController = segue.destination as? MainMenuDentistViewController {
                     mainMenuViewController.dentistData = self.dentist
                 }
-              }
         }
     }
+    
     @IBAction func forgotPassword(_ sender: Any) {
     }
     
