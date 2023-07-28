@@ -33,12 +33,12 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWj-Ue-YDV">
-                                <rect key="frame" x="110" y="420" width="173" height="81.333333333333314"/>
+                                <rect key="frame" x="100.66666666666667" y="420" width="191.66666666666663" height="44.333333333333314"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Easy">
                                         <attributes>
                                             <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="24" name="Zapfino"/>
+                                            <font key="NSFont" size="36" name="AmericanTypewriter-Bold"/>
                                             <font key="NSOriginalFont" metaFont="system" size="18"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -54,7 +54,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7N-aK-IQt">
-                                <rect key="frame" x="71.666666666666686" y="571.33333333333337" width="250" height="38"/>
+                                <rect key="frame" x="71.666666666666686" y="534.33333333333337" width="250" height="38"/>
                                 <color key="backgroundColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="XYO-GL-Nu1"/>
@@ -74,8 +74,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3p0-ku-mdh">
-                                <rect key="frame" x="96.666666666666686" y="664.33333333333337" width="200" height="36"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="96.666666666666686" y="627.33333333333337" width="200" height="36"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="PYr-Da-7qy"/>
                                 </constraints>
@@ -122,6 +122,7 @@
                             <constraint firstItem="RWj-Ue-YDV" firstAttribute="centerX" secondItem="CmU-0x-uV5" secondAttribute="centerX" id="kdK-CQ-948"/>
                             <constraint firstItem="CmU-0x-uV5" firstAttribute="top" secondItem="GM3-AC-IfD" secondAttribute="top" id="lg1-MY-0d6"/>
                             <constraint firstItem="QpB-CA-PCA" firstAttribute="bottom" secondItem="Y66-LU-pjW" secondAttribute="bottom" constant="30" id="lqj-2U-Wpa"/>
+                            <constraint firstItem="Y66-LU-pjW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3p0-ku-mdh" secondAttribute="bottom" constant="55" id="uYo-cC-AhP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Zkr-ap-Dtu"/>
@@ -981,6 +982,9 @@
         <image name="iconePerfil" width="120" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

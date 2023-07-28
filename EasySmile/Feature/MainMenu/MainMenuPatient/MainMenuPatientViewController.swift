@@ -11,7 +11,14 @@ class MainMenuPatientViewController: UIViewController {
 
     @IBOutlet weak var namePatientLabel: UILabel!
     
+    
+    var screenMainMenuPatient: MainMenuPatientView?
     var patientData: Patient?
+    
+    override func loadView() {
+        screenMainMenuPatient = MainMenuPatientView()
+        self.view = screenMainMenuPatient
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

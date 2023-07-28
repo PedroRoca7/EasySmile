@@ -9,6 +9,13 @@ import UIKit
 
 class InitialScreenViewController: UIViewController {
     
+    var screenInitial: InitialScreenView?
+    
+    override func loadView() {
+        self.screenInitial = InitialScreenView()
+        self.view = screenInitial
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        

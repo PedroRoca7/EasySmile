@@ -12,7 +12,7 @@ class ScreenLoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var senhaTextField: UITextField!
     
-    var viewModel: RegisterLoginViewModel?
+    var viewModel: LoginViewModel?
     var patient: Patient?
     var dentist: Dentist?
     
@@ -22,7 +22,7 @@ class ScreenLoginViewController: UIViewController {
     }
     
     @IBAction func loginPressed(_ sender: Any) {
-        viewModel = RegisterLoginViewModel()
+        viewModel = LoginViewModel()
         
         guard let email = emailTextField.text,
               let senha = senhaTextField.text,
@@ -64,4 +64,10 @@ class ScreenLoginViewController: UIViewController {
     @IBAction func needHelp(_ sender: Any) {
     }
     
+}
+
+extension ScreenLoginViewController {
+    func showErrorLogin() {
+        Alert.showBasicAlert(title: "", message: "", viewController: self)
+    }
 }

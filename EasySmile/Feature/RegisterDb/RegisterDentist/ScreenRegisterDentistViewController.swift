@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterDentistViewController: UIViewController {
+class ScreenRegisterDentistViewController: UIViewController {
     
     @IBOutlet weak var nomeCompletoDentistTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -22,14 +22,15 @@ class RegisterDentistViewController: UIViewController {
     @IBOutlet weak var cepTextField: UITextField!
     
     var ufs: [String] = []
-    var viewModel: RegisterLoginViewModel?
+    var viewModel: RegisterDentistViewModel?
     var cep: Cep?
     var textFields: [UITextField] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = RegisterLoginViewModel()
-        ufs = loadUfs()
+        viewModel = RegisterDentistViewModel()
+        guard let uf = viewModel?.ufs else { return }
+        ufs = uf
         hiddenPickerView()
         configDelegatesDataSource()
         textFields = [nomeCompletoDentistTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField, numeroDaInscricaoConselhoTextField, ruaDoConsultorioTextField]
@@ -63,9 +64,7 @@ class RegisterDentistViewController: UIViewController {
         }
     }
     
-    private func loadUfs() -> [String] {
-        return ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
-    }
+
     
     @objc func textFieldDidChange() {
         checkTextFieldIsEmpty()
@@ -117,7 +116,7 @@ class RegisterDentistViewController: UIViewController {
     }
     }
     
-extension RegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension ScreenRegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - UIPickerViewDataSource
     
@@ -143,7 +142,7 @@ extension RegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataS
     
 }
 
-extension RegisterDentistViewController: UITextFieldDelegate {
+extension ScreenRegisterDentistViewController: UITextFieldDelegate {
     
     // MARK: - UITextFieldDelegate
     
@@ -153,7 +152,7 @@ extension RegisterDentistViewController: UITextFieldDelegate {
             let newCep = (textField.text! as NSString).replacingCharacters(in: range, with: string)
             
             if newCep.count == 8 {
-                view.endEditing(true)
+                
                 viewModel?.buscarCep(cep: newCep, completion: { dataCep in
                     if dataCep != nil {
                         DispatchQueue.main.async {

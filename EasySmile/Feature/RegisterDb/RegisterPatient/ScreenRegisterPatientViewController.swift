@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterPatientViewController: UIViewController {
+class ScreenRegisterPatientViewController: UIViewController {
     
     @IBOutlet weak var nomeCompletoPacientTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -16,7 +16,7 @@ class RegisterPatientViewController: UIViewController {
     @IBOutlet weak var senhaTextField: UITextField!
     @IBOutlet weak var cadastrarButton: UIButton!
     
-    var viewModel: RegisterLoginViewModel?
+    var viewModel: RegisterPatientViewModel?
     var textFields: [UITextField] = []
     
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class RegisterPatientViewController: UIViewController {
     
     @IBAction func registerPatient(_ sender: Any) {
         
-        viewModel = RegisterLoginViewModel()
+        viewModel = RegisterPatientViewModel()
         
         guard let nome = nomeCompletoPacientTextField.text,
               let email = emailTextField.text,
