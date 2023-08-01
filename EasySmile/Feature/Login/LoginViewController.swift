@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScreenLoginViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var senhaTextField: UITextField!
@@ -66,7 +66,7 @@ class ScreenLoginViewController: UIViewController {
     
 }
 
-extension ScreenLoginViewController {
+extension LoginViewController {
     func showErrorLogin() {
         Alert.showBasicAlert(title: "", message: "", viewController: self)
     }

@@ -11,26 +11,11 @@ import FirebaseCore
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Inicializar a janela do aplicativo
-        window = UIWindow(frame: UIScreen.main.bounds)
-        
-        // Criar a instância do seu MyViewController
-        let myViewController = InitialScreenViewController()
-        
-        // Criar a instância do navigationController com o MyViewController como o controlador raiz
-        let navigationController = UINavigationController(rootViewController: myViewController)
-        
-        // Definir o navigationController como a raiz da janela
-        window?.rootViewController = navigationController
-        
-        // Tornar a janela visível
-        window?.makeKeyAndVisible()
-        
+
         FirebaseApp.configure()
-       
+    
         return true
     }
 

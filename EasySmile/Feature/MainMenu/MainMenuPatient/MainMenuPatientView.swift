@@ -10,9 +10,10 @@ import UIKit
 class MainMenuPatientView: UIView {
     
     lazy var backgroundImage: UIImageView = {
-       let backgroundImage = UIImageView()
+        let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        
+        backgroundImage.image = UIImage(named: "backgroundTelaLogin")
+        backgroundImage.contentMode = .scaleAspectFit
         
        return backgroundImage
     }()
@@ -41,7 +42,7 @@ class MainMenuPatientView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addView()
+        addElementsView()
         configConstraints()
     }
     
@@ -49,7 +50,7 @@ class MainMenuPatientView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func addView() {
+    private func addElementsView() {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.namePatientLabel)
         self.addSubview(self.myProfileButton)

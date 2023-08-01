@@ -78,7 +78,7 @@ class InitialScreenView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addViews()
+        addElementsView()
         configConstraints()
     }
     
@@ -87,7 +87,7 @@ class InitialScreenView: UIView {
     }
     
         
-    private func addViews() {
+    private func addElementsView() {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.imageIcon)
         self.addSubview(self.easySmileLabel)
