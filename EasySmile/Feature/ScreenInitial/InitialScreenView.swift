@@ -13,7 +13,8 @@ class InitialScreenView: UIView {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundTelaLogin")
-        backgroundImage.contentMode = .scaleAspectFit
+        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.clipsToBounds = true
         
         return backgroundImage
     }()
@@ -27,17 +28,13 @@ class InitialScreenView: UIView {
         return imageIcon
     }()
     
-    lazy var easySmileLabel: UILabel = {
-        let easySmileLabel = UILabel()
-        easySmileLabel.translatesAutoresizingMaskIntoConstraints = false
-        let labelText = "EasySmile"
-        let attributedText = NSMutableAttributedString(string: labelText)
-        attributedText.addAttributes([.font: UIFont(name: "Zapfino", size: 24) ?? UIFont.systemFont(ofSize: 24), .foregroundColor: UIColor.white], range: NSRange(location: 0, length: 3))
-        attributedText.addAttributes([.font: UIFont(name: "American Typewriter Bold", size: 36) ?? UIFont.systemFont(ofSize: 36), .foregroundColor: UIColor.magenta], range: NSRange(location: 4, length: 8))
-        easySmileLabel.attributedText = attributedText
-        easySmileLabel.textAlignment = .center
+    lazy var easySmileImageView: UIImageView = {
+        let easySmileImageView = UIImageView()
+        easySmileImageView.translatesAutoresizingMaskIntoConstraints = false
+        easySmileImageView.image = UIImage(named: "Easy")
+        easySmileImageView.contentMode = .scaleAspectFit
         
-        return easySmileLabel
+        return easySmileImageView
     }()
     
     lazy var loginButton: UIButton = {
@@ -90,7 +87,7 @@ class InitialScreenView: UIView {
     private func addElementsView() {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.imageIcon)
-        self.addSubview(self.easySmileLabel)
+        self.addSubview(self.easySmileImageView)
         self.addSubview(self.loginButton)
         self.addSubview(self.registerButton)
         self.addSubview(self.helpButton)
@@ -112,11 +109,11 @@ class InitialScreenView: UIView {
             self.imageIcon.heightAnchor.constraint(equalToConstant: 170),
             self.imageIcon.widthAnchor.constraint(equalToConstant: 170),
             
-            self.easySmileLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.easySmileLabel.topAnchor.constraint(equalTo: imageIcon.bottomAnchor, constant: 25),
+            self.easySmileImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.easySmileImageView.topAnchor.constraint(equalTo: imageIcon.bottomAnchor, constant: 25),
             
             self.loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.loginButton.topAnchor.constraint(equalTo: easySmileLabel.bottomAnchor, constant: 70),
+            self.loginButton.topAnchor.constraint(equalTo: easySmileImageView.bottomAnchor, constant: 70),
             self.loginButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
             
             self.registerButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 55),

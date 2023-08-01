@@ -14,22 +14,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
         
         // Inicializar a janela do aplicativo
-        window = UIWindow(frame: UIScreen.main.bounds)
+        let window = UIWindow(windowScene: windowScene)
         
         // Criar a instância do seu MyViewController
-        let myViewController = InitialScreenViewController()
+        let myViewController: InitialScreenViewController = InitialScreenViewController()
         
         // Criar a instância do navigationController com o MyViewController como o controlador raiz
         let navigationController = UINavigationController(rootViewController: myViewController)
         
         // Definir o navigationController como a raiz da janela
-        window?.rootViewController = navigationController
+        window.rootViewController = navigationController
         
         // Tornar a janela visível
-        window?.makeKeyAndVisible()
+        window.makeKeyAndVisible()
+        
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
