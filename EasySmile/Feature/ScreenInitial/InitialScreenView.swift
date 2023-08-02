@@ -32,7 +32,7 @@ class InitialScreenView: UIView {
         let easySmileImageView = UIImageView()
         easySmileImageView.translatesAutoresizingMaskIntoConstraints = false
         easySmileImageView.image = UIImage(named: "Easy")
-        easySmileImageView.contentMode = .scaleAspectFit
+        easySmileImageView.contentMode = .scaleAspectFill
         
         return easySmileImageView
     }()
@@ -93,7 +93,7 @@ class InitialScreenView: UIView {
         self.addSubview(self.helpButton)
         
     }
-    
+
     private func configConstraints() {
         
         let guide = self.safeAreaLayoutGuide
@@ -111,6 +111,7 @@ class InitialScreenView: UIView {
             
             self.easySmileImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.easySmileImageView.topAnchor.constraint(equalTo: imageIcon.bottomAnchor, constant: 25),
+            self.easySmileImageView.widthAnchor.constraint(equalToConstant: 200),
             
             self.loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.loginButton.topAnchor.constraint(equalTo: easySmileImageView.bottomAnchor, constant: 70),
@@ -121,7 +122,7 @@ class InitialScreenView: UIView {
             self.registerButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 200),
             
             self.helpButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.helpButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 30),
+            self.helpButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -30),
             helpButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 130),
             helpButton.topAnchor.constraint(greaterThanOrEqualTo: self.registerButton.bottomAnchor, constant: 55)
             

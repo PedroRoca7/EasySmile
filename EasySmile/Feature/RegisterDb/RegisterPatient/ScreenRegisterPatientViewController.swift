@@ -9,21 +9,37 @@ import UIKit
 
 class ScreenRegisterPatientViewController: UIViewController {
     
-    @IBOutlet weak var nomeCompletoPacientTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var cpfTextField: UITextField!
-    @IBOutlet weak var telefoneTextField: UITextField!
-    @IBOutlet weak var senhaTextField: UITextField!
-    @IBOutlet weak var cadastrarButton: UIButton!
+
+    private var textFields: [UITextField] = []
     
-    var viewModel: RegisterPatientViewModel?
-    var textFields: [UITextField] = []
+    private lazy var viewModel: RegisterPatientViewModel = {
+        let viewModel = RegisterPatientViewModel()
+        
+        return viewModel
+    }()
+    
+    private lazy var viewScreen: RegisterPatientView = {
+        let viewScreen = RegisterPatientView()
+        
+        return viewScreen
+    }()
+
+    
+    override func loadView() {
+        self.view = viewScreen
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textFields = [nomeCompletoPacientTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField]
+        textFields = [viewScreen.fullNameTextField,
+                      viewScreen.emailTextField,
+                      viewScreen.cpfTextField,
+                      viewScreen.phoneTextField,
+                      viewScreen.passwordTextField]
+        
         addObservadoresTextField(textFileds: textFields)
         hideKeyBoardWhenTapped()
+        viewScreen.registerButton.addTarget(self, action: #selector(registerPatient), for: .touchUpInside)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -57,27 +73,25 @@ class ScreenRegisterPatientViewController: UIViewController {
         }
         
         if allFieldsFilled {
-            cadastrarButton.isEnabled = true
-            cadastrarButton.backgroundColor = .magenta
+            viewScreen.registerButton.isEnabled = true
+            viewScreen.registerButton.backgroundColor = .magenta
         } else {
-            cadastrarButton.isEnabled = false
-            cadastrarButton.backgroundColor = .darkGray
+            viewScreen.registerButton.isEnabled = false
+            viewScreen.registerButton.backgroundColor = .darkGray
         }
     }
     
-    @IBAction func registerPatient(_ sender: Any) {
+    @objc private func registerPatient() {
         
-        viewModel = RegisterPatientViewModel()
-        
-        guard let nome = nomeCompletoPacientTextField.text,
-              let email = emailTextField.text,
-              let cpf = cpfTextField.text,
-              let telefone = telefoneTextField.text,
-              let senha = senhaTextField.text else { return }
+        guard let nome = viewScreen.fullNameTextField.text,
+              let email = viewScreen.emailTextField.text,
+              let cpf = viewScreen.cpfTextField.text,
+              let telefone = viewScreen.phoneTextField.text,
+              let senha = viewScreen.passwordTextField.text else { return }
         
         let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)
         
-        viewModel?.registerPatientDb(patient: patient, onComplete: { result in
+        viewModel.registerPatientDb(patient: patient, onComplete: { result in
             if result {
                 Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
             } else {

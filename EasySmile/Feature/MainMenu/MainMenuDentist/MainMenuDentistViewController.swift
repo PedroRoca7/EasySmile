@@ -8,15 +8,23 @@
 import UIKit
 
 class MainMenuDentistViewController: UIViewController {
-
-    @IBOutlet weak var nameDentistLabel: UILabel!
    
+    private lazy var viewScreen: MainMenuDentistView = {
+        let viewScreen = MainMenuDentistView()
+        
+        return viewScreen
+    }()
+    
     var dentistData: Dentist?
+    
+    override func loadView() {
+        self.view = viewScreen
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let dentistData = dentistData else { return }
-        nameDentistLabel.text = ("Olá \(dentistData.nome)")
+        viewScreen.nameDentistLabel.text = ("Olá \(dentistData.nome)")
         
     }
 }

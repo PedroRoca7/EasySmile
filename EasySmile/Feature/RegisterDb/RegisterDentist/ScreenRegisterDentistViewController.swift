@@ -9,31 +9,40 @@ import UIKit
 
 class ScreenRegisterDentistViewController: UIViewController {
     
-    @IBOutlet weak var nomeCompletoDentistTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var cpfTextField: UITextField!
-    @IBOutlet weak var telefoneTextField: UITextField!
-    @IBOutlet weak var numeroDaInscricaoConselhoTextField: UITextField!
-    @IBOutlet weak var ruaDoConsultorioTextField: UITextField!
-    @IBOutlet weak var senhaTextField: UITextField!
-    @IBOutlet weak var cadastrarButton: UIButton!
-    @IBOutlet weak var ufButton: UIButton!
-    @IBOutlet weak var ufPickerView: UIPickerView!
-    @IBOutlet weak var cepTextField: UITextField!
-    
     var ufs: [String] = []
-    var viewModel: RegisterDentistViewModel?
     var cep: Cep?
     var textFields: [UITextField] = []
     
+    private lazy var viewModel: RegisterDentistViewModel = {
+        let viewModel = RegisterDentistViewModel()
+        
+        return viewModel
+    }()
+    
+    private lazy var viewScreen: RegisterDentistView = {
+        let viewScreen = RegisterDentistView()
+        
+        return viewScreen
+    }()
+    
+    override func loadView() {
+        self.view = viewScreen
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = RegisterDentistViewModel()
-        guard let uf = viewModel?.ufs else { return }
-        ufs = uf
+        let viewModel = viewModel
+        ufs = viewModel.ufs
         hiddenPickerView()
         configDelegatesDataSource()
-        textFields = [nomeCompletoDentistTextField, emailTextField, cpfTextField, telefoneTextField, senhaTextField, numeroDaInscricaoConselhoTextField, ruaDoConsultorioTextField]
+        textFields = [viewScreen.fullNameTextField,
+                      viewScreen.emailTextField,
+                      viewScreen.cpfTextField,
+                      viewScreen.phoneTextField,
+                      viewScreen.passwordTextField,
+                      viewScreen.numberRegistrationTextField,
+                      viewScreen.streetOfficeTextField]
+        
         addObservadoresTextField(textFields: textFields)
         hideKeyBoardWhenTapped()
     }
@@ -43,13 +52,13 @@ class ScreenRegisterDentistViewController: UIViewController {
     }
     
     private func configDelegatesDataSource() {
-        ufPickerView.delegate = self
-        ufPickerView.dataSource = self
-        cepTextField.delegate = self
+        viewScreen.ufpickerView.delegate = self
+        viewScreen.ufpickerView.dataSource = self
+        viewScreen.cepTextField.delegate = self
     }
     
     private func hiddenPickerView() {
-        ufPickerView.isHidden = true
+        viewScreen.ufpickerView.isHidden = true
     }
     
     private func addObservadoresTextField(textFields: [UITextField]) {
@@ -64,13 +73,12 @@ class ScreenRegisterDentistViewController: UIViewController {
         }
     }
     
-
-    
     @objc func textFieldDidChange() {
         checkTextFieldIsEmpty()
     }
     
     private func checkTextFieldIsEmpty() {
+        
         var allFieldsFilled = true
         
         for textField in textFields {
@@ -81,32 +89,32 @@ class ScreenRegisterDentistViewController: UIViewController {
         }
         
         if allFieldsFilled {
-            cadastrarButton.isEnabled = true
-            cadastrarButton.backgroundColor = .magenta
+            viewScreen.registerButton.isEnabled = true
+            viewScreen.registerButton.backgroundColor = .magenta
         } else {
-            cadastrarButton.isEnabled = false
-            cadastrarButton.backgroundColor = .darkGray
+            viewScreen.registerButton.isEnabled = false
+            viewScreen.registerButton.backgroundColor = .darkGray
         }
     }
     
-    @IBAction func ufPressedButton(_ sender: Any) {
-        ufPickerView.isHidden = !ufPickerView.isHidden
+    @objc private func ufPressedButton() {
+        viewScreen.ufpickerView.isHidden = !(viewScreen.ufpickerView.isHidden)
     }
     
-    @IBAction func registerDentist(_ sender: Any) {
+    @objc private func registerDentist() {
         
-        guard let nome = nomeCompletoDentistTextField.text,
-              let email = emailTextField.text,
-              let cpf = cpfTextField.text,
-              let telefone = telefoneTextField.text,
-              let numeroInscricaoConselho = numeroDaInscricaoConselhoTextField.text,
-              let ruaConsultorio = ruaDoConsultorioTextField.text,
-              let uf = ufButton.title(for: .normal),
-              let senha = senhaTextField.text else { return }
+        guard let nome = viewScreen.fullNameTextField.text,
+              let email = viewScreen.emailTextField.text,
+              let cpf = viewScreen.cpfTextField.text,
+              let telefone = viewScreen.phoneTextField.text,
+              let numeroInscricaoConselho = viewScreen.numberRegistrationTextField.text,
+              let ruaConsultorio = viewScreen.streetOfficeTextField.text,
+              let uf = viewScreen.ufButton.title(for: .normal),
+              let senha = viewScreen.passwordTextField.text else { return }
         
         let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, numeroDaInscricao: numeroInscricaoConselho, uf: uf, ruaDoConsultorio: ruaConsultorio, senha: senha)
         
-        viewModel?.registerDentistDb(dentist: dentist, onComplete: { result in
+        viewModel.registerDentistDb(dentist: dentist, onComplete: { result in
             if result {
                 Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
             } else {
@@ -136,7 +144,7 @@ extension ScreenRegisterDentistViewController: UIPickerViewDelegate, UIPickerVie
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedUf = ufs[row]
-        ufButton.setTitle(selectedUf, for: .normal)
+        viewScreen.ufButton.setTitle(selectedUf, for: .normal)
         hiddenPickerView()
     }
     
@@ -148,26 +156,26 @@ extension ScreenRegisterDentistViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if textField == cepTextField {
+        if textField == viewScreen.cepTextField {
             let newCep = (textField.text! as NSString).replacingCharacters(in: range, with: string)
             
             if newCep.count == 8 {
                 
-                viewModel?.buscarCep(cep: newCep, completion: { dataCep in
+                viewModel.buscarCep(cep: newCep, completion: { dataCep in
                     if dataCep != nil {
                         DispatchQueue.main.async {
-                            self.ruaDoConsultorioTextField.text = dataCep?.logradouro
-                            self.ufButton.setTitle(dataCep?.uf, for: .normal)
-                            self.ufButton.isEnabled = false
-                            self.ruaDoConsultorioTextField.isEnabled = false
+                            self.viewScreen.streetOfficeTextField.text = dataCep?.logradouro
+                            self.viewScreen.ufButton.setTitle(dataCep?.uf, for: .normal)
+                            self.viewScreen.ufButton.isEnabled = false
+                            self.viewScreen.streetOfficeTextField.isEnabled = false
                         }
                     }
                 })
             } else {
-                self.ufButton.isEnabled = true
-                self.ruaDoConsultorioTextField.isEnabled = true
-                self.ufButton.setTitle("", for: .normal)
-                self.ruaDoConsultorioTextField.text = ""
+                self.viewScreen.ufButton.isEnabled = true
+                self.viewScreen.streetOfficeTextField.isEnabled = true
+                self.viewScreen.ufButton.setTitle("", for: .normal)
+                self.viewScreen.streetOfficeTextField.text = ""
             }
         }
         return true

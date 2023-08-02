@@ -13,7 +13,7 @@ class RegisterPatientView: UIView {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundTelaLogin")
-        backgroundImage.contentMode = .scaleAspectFit
+        backgroundImage.contentMode = .scaleAspectFill
         
         return backgroundImage
     }()

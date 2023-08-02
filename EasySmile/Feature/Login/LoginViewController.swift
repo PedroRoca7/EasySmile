@@ -9,61 +9,60 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var senhaTextField: UITextField!
-    
-    var viewModel: LoginViewModel?
     var patient: Patient?
     var dentist: Dentist?
     
+    private lazy var viewModel: LoginViewModel = {
+        let viewModel = LoginViewModel()
+        
+        return viewModel
+    }()
+    
+    private lazy var viewScreen: LoginView = {
+        let viewScreen = LoginView()
+        
+        return viewScreen
+    }()
+    
+    override func loadView() {
+        self.view = viewScreen
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewScreen.loginButton.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
         hideKeyBoardWhenTapped()
     }
     
-    @IBAction func loginPressed(_ sender: Any) {
-        viewModel = LoginViewModel()
-        
-        guard let email = emailTextField.text,
-              let senha = senhaTextField.text,
+    @objc private func loginPressed() {
+    
+        guard let email = viewScreen.emailTextField.text,
+              let senha = viewScreen.passwordTextField.text,
               !email.isEmpty,
               !senha.isEmpty else {
             Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
             return
         }
         
-        viewModel?.login(email: email, senha: senha, completion: { patient, dentist, error in
+        viewModel.login(email: email, senha: senha, completion: { patient, dentist, error in
             if let error = error {
                 print("Erro ao fazer login: \(error.localizedDescription)")
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
             } else if let patient = patient {
                 self.patient = Patient(nome: patient.nome, email: patient.email, cpf: patient.cpf, telefone: patient.telefone, senha: "")
                 self.performSegue(withIdentifier: "MainMenuPatientSegue", sender: self.patient)
+                let mainMenuPatient = MainMenuPatientViewController()
+                mainMenuPatient.patientData = self.patient
+                self.navigationController?.pushViewController(mainMenuPatient, animated: true)
             } else if let dentist = dentist {
                 self.dentist = Dentist(nome: dentist.nome, email: dentist.email, cpf: dentist.cpf, telefone: dentist.telefone, numeroDaInscricao: dentist.numeroDaInscricao, uf: dentist.uf, ruaDoConsultorio: dentist.ruaDoConsultorio, senha: "")
                 self.performSegue(withIdentifier: "MainMenuDentistSegue", sender: self.dentist)
+                let mainMenuDentist = MainMenuDentistViewController()
+                mainMenuDentist.dentistData = self.dentist
+                self.navigationController?.pushViewController(mainMenuDentist, animated: true)
             }
         })
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MainMenuPatientSegue" {
-            if let mainMenuViewController = segue.destination as? MainMenuPatientViewController {
-                mainMenuViewController.patientData = self.patient
-            }
-        } else if segue.identifier == "MainMenuDentistSegue" {
-                if let mainMenuViewController = segue.destination as? MainMenuDentistViewController {
-                    mainMenuViewController.dentistData = self.dentist
-                }
-        }
-    }
-    
-    @IBAction func forgotPassword(_ sender: Any) {
-    }
-    
-    @IBAction func needHelp(_ sender: Any) {
-    }
-    
 }
 
 extension LoginViewController {

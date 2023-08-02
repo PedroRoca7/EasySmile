@@ -12,8 +12,7 @@ class Alert {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
            
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let screenLoginViewController = storyBoard.instantiateViewController(withIdentifier: "ScreenLoginViewController")
+            let screenLoginViewController = LoginViewController()
             viewController.navigationController?.pushViewController(screenLoginViewController, animated: true)
         }
 
@@ -28,9 +27,7 @@ class Alert {
         alertController.addAction(tryAgainAction)
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { _ in
-           
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let cancelViewController = storyBoard.instantiateViewController(withIdentifier: "InitialScreenViewController")
+            let cancelViewController = InitialScreenViewController()
             viewController.navigationController?.pushViewController(cancelViewController, animated: true)
         }
         alertController.addAction(cancelAction)

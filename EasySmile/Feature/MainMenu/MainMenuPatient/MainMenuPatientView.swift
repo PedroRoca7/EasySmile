@@ -13,7 +13,7 @@ class MainMenuPatientView: UIView {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundTelaLogin")
-        backgroundImage.contentMode = .scaleAspectFit
+        backgroundImage.contentMode = .scaleAspectFill
         
        return backgroundImage
     }()
@@ -71,7 +71,7 @@ class MainMenuPatientView: UIView {
             
             self.namePatientLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 50),
             self.namePatientLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
-            self.namePatientLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: 293),
+            self.namePatientLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -293),
             
             self.myProfileButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.myProfileButton.topAnchor.constraint(equalTo: self.namePatientLabel.bottomAnchor, constant: 130),

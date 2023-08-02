@@ -8,12 +8,12 @@
 import UIKit
 
 class RegisterDentistView: UIView {
-    
+
     lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundTelaLogin")
-        backgroundImage.contentMode = .scaleAspectFit
+        backgroundImage.contentMode = .scaleAspectFill
         
         return backgroundImage
     }()

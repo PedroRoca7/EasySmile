@@ -9,21 +9,22 @@ import UIKit
 
 class MainMenuPatientViewController: UIViewController {
 
-    @IBOutlet weak var namePatientLabel: UILabel!
+    private lazy var viewScreen: MainMenuPatientView = {
+        let viewScreen = MainMenuPatientView()
+        
+        return viewScreen
+    }()
     
-    
-    var screenMainMenuPatient: MainMenuPatientView?
     var patientData: Patient?
     
     override func loadView() {
-        screenMainMenuPatient = MainMenuPatientView()
-        self.view = screenMainMenuPatient
+        self.view = viewScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let patientData = patientData else { return }
-        namePatientLabel.text = ("Olá \(patientData.nome)")
+        viewScreen.namePatientLabel.text = ("Olá \(patientData.nome)")
     }
 
 }

@@ -13,7 +13,7 @@ class LoginView: UIView {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundTelaLogin")
-        backgroundImage.contentMode = .scaleAspectFit
+        backgroundImage.contentMode = .scaleAspectFill
         
         return backgroundImage
     }()
@@ -142,7 +142,7 @@ class LoginView: UIView {
             self.loginButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
             
             self.needHelpButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.needHelpButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: 30),
+            self.needHelpButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -30),
             self.needHelpButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 130)
         ])
         
