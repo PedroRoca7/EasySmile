@@ -26,9 +26,17 @@ class RegisterDentistView: UIView {
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [fullNameLabel, fullNameTextField, emailLabel,
+                                                       emailTextField, cpfLabel, cpfTextField,
+                                                      phoneLabel, phoneTextField, numberRegistrationLabel,
+                                                      numberRegistrationTextField, cepLabel, cepTextField,
+                                                      ufLabel, ufButton, streetOfficeLabel,
+                                                      streetOfficeTextField, passwordLabel, passwordTextField,
+                                                      registerButton])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 20
         
         return stackView
     }()
@@ -44,6 +52,7 @@ class RegisterDentistView: UIView {
     lazy var fullNameTextField: UITextField = {
         let fullNameTextField = UITextField()
         fullNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        fullNameTextField.borderStyle = .roundedRect
         
         return fullNameTextField
     }()
@@ -59,6 +68,8 @@ class RegisterDentistView: UIView {
     lazy var emailTextField: UITextField = {
         let emailTextField = UITextField()
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.borderStyle = .roundedRect
+        emailTextField.keyboardType = .emailAddress
         
         return emailTextField
     }()
@@ -74,6 +85,8 @@ class RegisterDentistView: UIView {
     lazy var cpfTextField: UITextField = {
         let cpfTextField = UITextField()
         cpfTextField.translatesAutoresizingMaskIntoConstraints = false
+        cpfTextField.borderStyle = .roundedRect
+        cpfTextField.keyboardType = .numberPad
         
         return cpfTextField
     }()
@@ -89,6 +102,8 @@ class RegisterDentistView: UIView {
     lazy var phoneTextField: UITextField = {
         let phoneTextField = UITextField()
         phoneTextField.translatesAutoresizingMaskIntoConstraints = false
+        phoneTextField.borderStyle = .roundedRect
+        phoneTextField.keyboardType = .phonePad
         
         return phoneTextField
     }()
@@ -104,6 +119,8 @@ class RegisterDentistView: UIView {
     lazy var numberRegistrationTextField: UITextField = {
         let numberRegistrationTextField = UITextField()
         numberRegistrationTextField.translatesAutoresizingMaskIntoConstraints = false
+        numberRegistrationTextField.borderStyle = .roundedRect
+        numberRegistrationTextField.keyboardType = .numberPad
         
         return numberRegistrationTextField
     }()
@@ -127,6 +144,7 @@ class RegisterDentistView: UIView {
     lazy var cepTextField: UITextField = {
         let cepTextField = UITextField()
         cepTextField.translatesAutoresizingMaskIntoConstraints = false
+        cepTextField.borderStyle = .roundedRect
         
         return cepTextField
     }()
@@ -161,6 +179,7 @@ class RegisterDentistView: UIView {
     lazy var streetOfficeTextField: UITextField = {
         let streetOfficeTextField = UITextField()
         streetOfficeTextField.translatesAutoresizingMaskIntoConstraints = false
+        streetOfficeTextField.borderStyle = .roundedRect
         
         return streetOfficeTextField
     }()
@@ -176,6 +195,7 @@ class RegisterDentistView: UIView {
     lazy var passwordTextField: UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.borderStyle = .roundedRect
         
         return passwordTextField
     }()
@@ -186,6 +206,8 @@ class RegisterDentistView: UIView {
         registerButton.setTitle("Cadastrar", for: .normal)
         registerButton.isEnabled = false
         registerButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
+        registerButton.backgroundColor = .magenta
+        registerButton.layer.cornerRadius = 20
         
         return registerButton
     }()
@@ -204,27 +226,7 @@ class RegisterDentistView: UIView {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.scrollView)
         self.scrollView.addSubview(self.stackView)
-        self.stackView.addArrangedSubview(self.fullNameLabel)
-        self.stackView.addArrangedSubview(self.fullNameTextField)
-        self.stackView.addArrangedSubview(self.emailLabel)
-        self.stackView.addArrangedSubview(self.emailTextField)
-        self.stackView.addArrangedSubview(self.cpfLabel)
-        self.stackView.addArrangedSubview(self.cpfTextField)
-        self.stackView.addArrangedSubview(self.phoneLabel)
-        self.stackView.addArrangedSubview(self.phoneTextField)
-        self.stackView.addArrangedSubview(self.ufpickerView)
-        self.stackView.addArrangedSubview(self.numberRegistrationLabel)
-        self.stackView.addArrangedSubview(self.numberRegistrationTextField)
-        self.stackView.addArrangedSubview(self.cepLabel)
-        self.stackView.addArrangedSubview(self.cepTextField)
-        self.stackView.addArrangedSubview(self.ufLabel)
-        self.stackView.addArrangedSubview(self.ufButton)
-        self.stackView.addArrangedSubview(self.streetOfficeLabel)
-        self.stackView.addArrangedSubview(self.streetOfficeTextField)
-        self.stackView.addArrangedSubview(self.passwordLabel)
-        self.stackView.addArrangedSubview(self.passwordTextField)
-        self.stackView.addArrangedSubview(self.registerButton)
-        
+        self.scrollView.contentSize = self.stackView.bounds.size
     }
     
     private func configContraints() {
@@ -248,85 +250,29 @@ class RegisterDentistView: UIView {
             self.stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             self.stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            self.fullNameLabel.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 30),
-            self.fullNameLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.fullNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
+            self.fullNameTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.fullNameTextField.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 10),
-            self.fullNameTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.fullNameTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
+            self.emailTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.emailLabel.topAnchor.constraint(equalTo: fullNameTextField.bottomAnchor, constant: 20),
-            self.emailLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.emailLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
+            self.cpfTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
-            self.emailTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.emailTextField.leadingAnchor.constraint(equalTo: emailLabel.leadingAnchor),
+            self.phoneTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.cpfLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            self.cpfLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.cpfLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
+            self.numberRegistrationTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.cpfTextField.topAnchor.constraint(equalTo: cpfLabel.bottomAnchor, constant: 10),
-            self.cpfTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.cpfTextField.leadingAnchor.constraint(equalTo: cpfLabel.leadingAnchor),
+            self.cepTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.phoneLabel.topAnchor.constraint(equalTo: cpfTextField.bottomAnchor, constant: 20),
-            self.phoneLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.phoneLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
+            self.ufButton.widthAnchor.constraint(equalToConstant: 200),
             
-            self.phoneTextField.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 10),
-            self.phoneTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.phoneTextField.leadingAnchor.constraint(equalTo: phoneLabel.leadingAnchor),
+            self.streetOfficeTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.ufpickerView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
-            self.ufpickerView.centerYAnchor.constraint(equalTo: stackView.centerYAnchor),
+            self.passwordTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.numberRegistrationLabel.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 20),
-            self.numberRegistrationLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.numberRegistrationLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
+            self.registerButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
             
-            self.numberRegistrationTextField.topAnchor.constraint(equalTo: numberRegistrationLabel.bottomAnchor, constant: 10),
-            self.numberRegistrationTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.numberRegistrationTextField.leadingAnchor.constraint(equalTo: numberRegistrationLabel.leadingAnchor),
             
-            self.cepLabel.topAnchor.constraint(equalTo: numberRegistrationTextField.bottomAnchor, constant: 20),
-            self.cepLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.cepLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
-            
-            self.cepTextField.topAnchor.constraint(equalTo: cepLabel.bottomAnchor, constant: 10),
-            self.cepTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.cepTextField.leadingAnchor.constraint(equalTo: cepLabel.leadingAnchor),
-            
-            self.ufLabel.topAnchor.constraint(equalTo: cepTextField.bottomAnchor, constant: 20),
-            self.ufLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.ufLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
-            
-            self.ufButton.topAnchor.constraint(equalTo: ufLabel.bottomAnchor, constant: 10),
-            self.ufButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -200),
-            self.ufButton.leadingAnchor.constraint(equalTo: ufLabel.leadingAnchor),
-            
-            self.streetOfficeLabel.topAnchor.constraint(equalTo: ufButton.bottomAnchor, constant: 20),
-            self.streetOfficeLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.streetOfficeLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
-            
-            self.streetOfficeTextField.topAnchor.constraint(equalTo: streetOfficeLabel.bottomAnchor, constant: 10),
-            self.streetOfficeTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.streetOfficeTextField.leadingAnchor.constraint(equalTo: streetOfficeLabel.leadingAnchor),
-            
-            self.passwordLabel.topAnchor.constraint(equalTo: streetOfficeTextField.bottomAnchor, constant: 20),
-            self.passwordLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30),
-            self.passwordLabel.trailingAnchor.constraint(greaterThanOrEqualTo: stackView.trailingAnchor, constant: -231),
-            
-            self.streetOfficeTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 10),
-            self.streetOfficeTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -50),
-            self.streetOfficeTextField.leadingAnchor.constraint(equalTo: passwordLabel.leadingAnchor),
-            
-            self.registerButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
-            self.registerButton.topAnchor.constraint(equalTo: streetOfficeTextField.bottomAnchor, constant: 30),
-            self.registerButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 250)
-            
+//            self.ufpickerView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
+//            self.ufpickerView.centerYAnchor.constraint(equalTo: stackView.centerYAnchor)
         ])
     }
 }

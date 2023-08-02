@@ -33,9 +33,11 @@ class PatientOrDentistView: UIView {
     lazy var patientButton: UIButton = {
         let patientButton = UIButton()
         patientButton.translatesAutoresizingMaskIntoConstraints = false
+        patientButton.backgroundColor = .magenta
         patientButton.setTitleColor(.white, for: .normal)
         patientButton.setTitle("Paciente", for: .normal)
         patientButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
+        patientButton.layer.cornerRadius = 20
         
         return patientButton
     }()
@@ -43,9 +45,11 @@ class PatientOrDentistView: UIView {
     lazy var dentistButton: UIButton = {
         let dentistButton = UIButton()
         dentistButton.translatesAutoresizingMaskIntoConstraints = false
+        dentistButton.backgroundColor = .magenta
         dentistButton.setTitleColor(.white, for: .normal)
         dentistButton.setTitle("Odontologista", for: .normal)
         dentistButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
+        dentistButton.layer.cornerRadius = 20
         
         return dentistButton
     }()
@@ -78,7 +82,7 @@ class PatientOrDentistView: UIView {
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            self.patientOrDentistLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 50),
+            self.patientOrDentistLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 70),
             self.patientOrDentistLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.patientOrDentistLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             self.patientOrDentistLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),

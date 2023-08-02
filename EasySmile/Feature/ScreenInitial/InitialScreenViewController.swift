@@ -21,15 +21,15 @@ class InitialScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewScreen.loginButton.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
-        viewScreen.registerButton.addTarget(self, action: #selector(registerPressed), for: .touchUpInside)
+        viewScreen.loginButton.addTarget(self, action: #selector(loginPressed(sender:)), for: .touchUpInside)
+        viewScreen.registerButton.addTarget(self, action: #selector(registerPressed(sender:)), for: .touchUpInside)
     }
     
-    @objc private func loginPressed() {
+    @objc private func loginPressed(sender: UIButton) {
         navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
-    @objc private func registerPressed() {
+    @objc private func registerPressed(sender: UIButton) {
         navigationController?.pushViewController(PatientOrDentistViewController(), animated: true)
     }
     

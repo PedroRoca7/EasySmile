@@ -31,14 +31,14 @@ class InitialScreenView: UIView {
     lazy var easySmileImageView: UIImageView = {
         let easySmileImageView = UIImageView()
         easySmileImageView.translatesAutoresizingMaskIntoConstraints = false
-        easySmileImageView.image = UIImage(named: "Easy")
+        easySmileImageView.image = UIImage(named: "easySmile")
         easySmileImageView.contentMode = .scaleAspectFill
         
         return easySmileImageView
     }()
     
     lazy var loginButton: UIButton = {
-        let loginButton = UIButton()
+        let loginButton = UIButton(type: .system)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.backgroundColor = .purple
         loginButton.layer.cornerRadius = 10
@@ -51,7 +51,7 @@ class InitialScreenView: UIView {
     }()
     
     lazy var registerButton: UIButton = {
-        let registerButton = UIButton()
+        let registerButton = UIButton(type: .system)
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         registerButton.backgroundColor = .systemGray6
         registerButton.layer.cornerRadius = 10
@@ -63,7 +63,7 @@ class InitialScreenView: UIView {
     }()
     
     lazy var helpButton: UIButton = {
-        let helpButton = UIButton()
+        let helpButton = UIButton(type: .system)
         helpButton.translatesAutoresizingMaskIntoConstraints = false
         helpButton.setTitle("Precisa de Ajuda?", for: .normal)
         helpButton.setTitleColor(.darkGray, for: .normal)
@@ -104,14 +104,15 @@ class InitialScreenView: UIView {
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         
-            self.imageIcon.topAnchor.constraint(equalTo: guide.topAnchor, constant: 70),
+            self.imageIcon.topAnchor.constraint(equalTo: guide.topAnchor, constant: 90),
             self.imageIcon.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.imageIcon.heightAnchor.constraint(equalToConstant: 170),
             self.imageIcon.widthAnchor.constraint(equalToConstant: 170),
             
             self.easySmileImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.easySmileImageView.topAnchor.constraint(equalTo: imageIcon.bottomAnchor, constant: 25),
-            self.easySmileImageView.widthAnchor.constraint(equalToConstant: 200),
+            self.easySmileImageView.topAnchor.constraint(equalTo: imageIcon.bottomAnchor, constant: 15),
+            self.easySmileImageView.widthAnchor.constraint(equalToConstant: 85),
+            self.easySmileImageView.heightAnchor.constraint(equalToConstant: 100),
             
             self.loginButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.loginButton.topAnchor.constraint(equalTo: easySmileImageView.bottomAnchor, constant: 70),

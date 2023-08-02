@@ -21,8 +21,8 @@ class LoginView: UIView {
     lazy var emailLabel: UILabel = {
         let emailLabel = UILabel()
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.text = "Email"
-        emailLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 17)
+        emailLabel.text = "Email:"
+        emailLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
         
         return emailLabel
     }()
@@ -30,6 +30,9 @@ class LoginView: UIView {
     lazy var emailTextField: UITextField = {
         let emailTextField = UITextField()
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.keyboardType = .emailAddress
+        emailTextField.borderStyle = .roundedRect
+        emailTextField.font = UIFont.systemFont(ofSize: 22)
         emailTextField.placeholder = "Digite seu Email:"
         
         return emailTextField
@@ -38,8 +41,8 @@ class LoginView: UIView {
     lazy var passwordLabel: UILabel = {
         let senhaLabel = UILabel()
         senhaLabel.translatesAutoresizingMaskIntoConstraints = false
-        senhaLabel.text = "Senha"
-        senhaLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 17)
+        senhaLabel.text = "Senha:"
+        senhaLabel.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
         
         return senhaLabel
     }()
@@ -47,6 +50,8 @@ class LoginView: UIView {
     lazy var passwordTextField: UITextField = {
         let senhaTextField = UITextField()
         senhaTextField.translatesAutoresizingMaskIntoConstraints = false
+        senhaTextField.borderStyle = .roundedRect
+        senhaTextField.font = UIFont.systemFont(ofSize: 22)
         senhaTextField.placeholder = "Digite sua Senha:"
         
         return senhaTextField
@@ -116,22 +121,21 @@ class LoginView: UIView {
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
+            self.emailLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 70),
             self.emailLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -271),
-            self.emailLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            self.emailLabel.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
+            self.emailLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
             
             
-            self.emailTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 5),
+            self.emailTextField.leadingAnchor.constraint(equalTo: emailLabel.leadingAnchor),
+            self.emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 15),
             self.emailTextField.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
             
-            self.passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 10),
+            self.passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
             self.passwordLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -269),
-            self.passwordLabel.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            self.passwordLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
+            self.passwordLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
             
-            self.passwordTextField.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 5),
+            self.passwordTextField.leadingAnchor.constraint(equalTo: passwordLabel.leadingAnchor),
+            self.passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 15),
             self.passwordTextField.widthAnchor.constraint(greaterThanOrEqualToConstant: 250),
             
             self.forgotPasswordButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
