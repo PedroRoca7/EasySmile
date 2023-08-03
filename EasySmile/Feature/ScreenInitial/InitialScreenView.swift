@@ -14,7 +14,6 @@ class InitialScreenView: UIView {
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundTelaLogin")
         backgroundImage.contentMode = .scaleAspectFill
-        backgroundImage.clipsToBounds = true
         
         return backgroundImage
     }()
@@ -124,8 +123,8 @@ class InitialScreenView: UIView {
             
             self.helpButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.helpButton.bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: -30),
-            helpButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 130),
-            helpButton.topAnchor.constraint(greaterThanOrEqualTo: self.registerButton.bottomAnchor, constant: 55)
+            self.helpButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 130),
+            self.helpButton.topAnchor.constraint(greaterThanOrEqualTo: self.registerButton.bottomAnchor, constant: 55)
             
         
         

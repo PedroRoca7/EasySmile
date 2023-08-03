@@ -9,25 +9,28 @@ import UIKit
 
 class InitialScreenViewController: UIViewController {
     
-    private lazy var viewScreen: InitialScreenView = {
-       let viewScreen = InitialScreenView()
-
-        return viewScreen
-    }()
+    private var viewScreen = InitialScreenView()
+    
+//    private lazy var viewScreen: InitialScreenView = {
+//       let viewScreen = InitialScreenView()
+//
+//        return viewScreen
+//    }()
     
     override func loadView() {
-        self.view = viewScreen
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view = viewScreen
         viewScreen.loginButton.addTarget(self, action: #selector(loginPressed(sender:)), for: .touchUpInside)
         viewScreen.registerButton.addTarget(self, action: #selector(registerPressed(sender:)), for: .touchUpInside)
     }
     
     @objc private func loginPressed(sender: UIButton) {
-        navigationController?.pushViewController(LoginViewController(), animated: true)
+        let loginViewController = LoginViewController()
+        navigationController?.pushViewController(loginViewController, animated: true)
     }
     
     @objc private func registerPressed(sender: UIButton) {

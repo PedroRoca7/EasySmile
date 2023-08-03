@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-    
+        
     var patient: Patient?
     var dentist: Dentist?
     
