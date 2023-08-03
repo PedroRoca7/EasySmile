@@ -13,7 +13,7 @@ class MainMenuPatientView: UIView {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundImage")
-        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.contentMode = .scaleToFill
         
        return backgroundImage
     }()

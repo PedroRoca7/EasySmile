@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ScreenRegisterPatientViewController: UIViewController {
     
-
     private var textFields: [UITextField] = []
+    private let disposedBag = DisposeBag()
     
     private lazy var viewModel: RegisterPatientViewModel = {
         let viewModel = RegisterPatientViewModel()
@@ -38,56 +40,29 @@ class ScreenRegisterPatientViewController: UIViewController {
                       viewScreen.phoneTextField,
                       viewScreen.passwordTextField]
         
-        addObservadoresTextField(textFileds: textFields)
+        let textFieldsObservables = textFields.map { $0.rx.text.orEmpty.asObservable() }
+
+        let combinedFieldsObservables = Observable.combineLatest(textFieldsObservables) { texts in
+            return texts.allSatisfy { !$0.isEmpty }
+        }
+
+        combinedFieldsObservables
+            .subscribe(onNext: { [weak self] allFilled in
+                self?.viewScreen.registerButton.isEnabled = allFilled
+                self?.viewScreen.registerButton.backgroundColor = allFilled ? .magenta : .darkGray
+            })
+            .disposed(by: disposedBag)
+        
         hideKeyBoardWhenTapped()
         viewScreen.registerButton.addTarget(self, action: #selector(registerPatient), for: .touchUpInside)
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        removeObservadoresTextField(textFileds: textFields)
-    }
-    
+        
     private func configNavigationController() {
         title = "Cadastro de Paciente"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.prefersLargeTitles = false
         let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
         navigationController?.navigationBar.titleTextAttributes = textAttributed
-    }
-    
-    private func addObservadoresTextField(textFileds: [UITextField]) {
-        for textField in textFileds {
-            textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        }
-    }
-    
-    private func removeObservadoresTextField(textFileds: [UITextField]) {
-        for textFiled in textFileds {
-            textFiled.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        }
-    }
-    
-    @objc func textFieldDidChange() {
-        checkTextFieldIsEmpty()
-    }
-    
-    private func checkTextFieldIsEmpty() {
-        var allFieldsFilled = true
-        
-        for textField in textFields {
-            if let text = textField.text, text.isEmpty {
-                allFieldsFilled = false
-                break
-            }
-        }
-        
-        if allFieldsFilled {
-            viewScreen.registerButton.isEnabled = true
-            viewScreen.registerButton.backgroundColor = .magenta
-        } else {
-            viewScreen.registerButton.isEnabled = false
-            viewScreen.registerButton.backgroundColor = .darkGray
-        }
     }
     
     @objc private func registerPatient() {

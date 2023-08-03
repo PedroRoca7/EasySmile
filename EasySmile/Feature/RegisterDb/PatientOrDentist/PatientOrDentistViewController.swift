@@ -22,16 +22,19 @@ class PatientOrDentistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         viewScreen.patientButton.addTarget(self, action: #selector(patientButtonPressed(sender:)), for: .touchUpInside)
         viewScreen.dentistButton.addTarget(self, action: #selector(dentistButtonPressed(sender:)), for: .touchUpInside)
     }
     
     @objc private func dentistButtonPressed(sender: UIButton) {
-        navigationController?.pushViewController(ScreenRegisterDentistViewController(), animated: true)
+        let screenRegisterDentistViewController = ScreenRegisterDentistViewController()
+        navigationController?.pushViewController(screenRegisterDentistViewController, animated: true)
     }
     
     @objc private func patientButtonPressed(sender: UIButton) {
-        navigationController?.pushViewController(ScreenRegisterPatientViewController(), animated: true)
+        let screenRegisterPatientViewController = ScreenRegisterPatientViewController()
+        navigationController?.pushViewController(screenRegisterPatientViewController, animated: true)
     }
     
 }

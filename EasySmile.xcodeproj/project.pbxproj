@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17D9D5B890DDAC2F048456FC /* Pods_EasySmile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53FE0CEC5F50654D492CD73F /* Pods_EasySmile.framework */; };
+		7AB7F2D9CC168DEA1CE23556 /* Pods_EasySmileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C95AA0B34CF1AF6C78BBAB64 /* Pods_EasySmileTests.framework */; };
 		CE2560202A70449400530AF2 /* ApiCep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25601F2A70449400530AF2 /* ApiCep.swift */; };
 		CE2560222A7044BD00530AF2 /* CepModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2560212A7044BD00530AF2 /* CepModel.swift */; };
 		CE3BF0D82A66ED7B001C267F /* ScreenRegisterPatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3BF0D72A66ED7B001C267F /* ScreenRegisterPatientViewController.swift */; };
@@ -41,6 +43,7 @@
 		CE9C85F22A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C85F12A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift */; };
 		CE9C86072A61E6D60028FC24 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9C86062A61E6D50028FC24 /* LoginViewController.swift */; };
 		CEE88C6F2A670A480027F18A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEE88C6E2A670A480027F18A /* GoogleService-Info.plist */; };
+		E99BA669D091150BD551317A /* Pods_EasySmile_EasySmileUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1037BD04E88928964AAD4D0 /* Pods_EasySmile_EasySmileUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		53FE0CEC5F50654D492CD73F /* Pods_EasySmile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasySmile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		579B6E792455407755FFC936 /* Pods-EasySmile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasySmile.release.xcconfig"; path = "Target Support Files/Pods-EasySmile/Pods-EasySmile.release.xcconfig"; sourceTree = "<group>"; };
+		699EFE1B426DB487C3F9D36E /* Pods-EasySmileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasySmileTests.release.xcconfig"; path = "Target Support Files/Pods-EasySmileTests/Pods-EasySmileTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A13EDB8F4CCF5E372ECFA97 /* Pods-EasySmile-EasySmileUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasySmile-EasySmileUITests.debug.xcconfig"; path = "Target Support Files/Pods-EasySmile-EasySmileUITests/Pods-EasySmile-EasySmileUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		952495616743234E28A26970 /* Pods-EasySmile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasySmile.debug.xcconfig"; path = "Target Support Files/Pods-EasySmile/Pods-EasySmile.debug.xcconfig"; sourceTree = "<group>"; };
+		9686EDF59D20EB627B3AEAED /* Pods-EasySmile-EasySmileUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasySmile-EasySmileUITests.release.xcconfig"; path = "Target Support Files/Pods-EasySmile-EasySmileUITests/Pods-EasySmile-EasySmileUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A9B6F7962BE949BE96E4A604 /* Pods-EasySmileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasySmileTests.debug.xcconfig"; path = "Target Support Files/Pods-EasySmileTests/Pods-EasySmileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C95AA0B34CF1AF6C78BBAB64 /* Pods_EasySmileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasySmileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE25601F2A70449400530AF2 /* ApiCep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCep.swift; sourceTree = "<group>"; };
 		CE2560212A7044BD00530AF2 /* CepModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CepModel.swift; sourceTree = "<group>"; };
 		CE3BF0D72A66ED7B001C267F /* ScreenRegisterPatientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRegisterPatientViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +107,7 @@
 		CE9C85F12A61D2090028FC24 /* EasySmileUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasySmileUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CE9C86062A61E6D50028FC24 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEE88C6E2A670A480027F18A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1037BD04E88928964AAD4D0 /* Pods_EasySmile_EasySmileUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasySmile_EasySmileUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,7 @@
 				CE62E21C2A675F3C00BD7C2E /* FirebaseDatabase in Frameworks */,
 				CE62E21A2A675F3C00BD7C2E /* FirebaseAuth in Frameworks */,
 				CE62E21E2A675F3C00BD7C2E /* FirebaseFirestore in Frameworks */,
+				17D9D5B890DDAC2F048456FC /* Pods_EasySmile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AB7F2D9CC168DEA1CE23556 /* Pods_EasySmileTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,12 +134,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E99BA669D091150BD551317A /* Pods_EasySmile_EasySmileUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F5DE7FEFA1295075C68E41D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				53FE0CEC5F50654D492CD73F /* Pods_EasySmile.framework */,
+				D1037BD04E88928964AAD4D0 /* Pods_EasySmile_EasySmileUITests.framework */,
+				C95AA0B34CF1AF6C78BBAB64 /* Pods_EasySmileTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87D23411F809C7A039467834 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				952495616743234E28A26970 /* Pods-EasySmile.debug.xcconfig */,
+				579B6E792455407755FFC936 /* Pods-EasySmile.release.xcconfig */,
+				8A13EDB8F4CCF5E372ECFA97 /* Pods-EasySmile-EasySmileUITests.debug.xcconfig */,
+				9686EDF59D20EB627B3AEAED /* Pods-EasySmile-EasySmileUITests.release.xcconfig */,
+				A9B6F7962BE949BE96E4A604 /* Pods-EasySmileTests.debug.xcconfig */,
+				699EFE1B426DB487C3F9D36E /* Pods-EasySmileTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CE25601E2A70447D00530AF2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +275,8 @@
 				CE9C85E42A61D2090028FC24 /* EasySmileTests */,
 				CE9C85EE2A61D2090028FC24 /* EasySmileUITests */,
 				CE9C85CC2A61D2040028FC24 /* Products */,
+				87D23411F809C7A039467834 /* Pods */,
+				6F5DE7FEFA1295075C68E41D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -310,9 +350,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE9C85F52A61D2090028FC24 /* Build configuration list for PBXNativeTarget "EasySmile" */;
 			buildPhases = (
+				5E362855DEFC0E2B0073E53B /* [CP] Check Pods Manifest.lock */,
 				CE9C85C72A61D2040028FC24 /* Sources */,
 				CE9C85C82A61D2040028FC24 /* Frameworks */,
 				CE9C85C92A61D2040028FC24 /* Resources */,
+				53E1232EED0DD1C27EBF1427 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -332,6 +374,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE9C85F82A61D2090028FC24 /* Build configuration list for PBXNativeTarget "EasySmileTests" */;
 			buildPhases = (
+				3F3ECA64B8A8D8D633538380 /* [CP] Check Pods Manifest.lock */,
 				CE9C85DD2A61D2090028FC24 /* Sources */,
 				CE9C85DE2A61D2090028FC24 /* Frameworks */,
 				CE9C85DF2A61D2090028FC24 /* Resources */,
@@ -350,9 +393,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE9C85FB2A61D2090028FC24 /* Build configuration list for PBXNativeTarget "EasySmileUITests" */;
 			buildPhases = (
+				57B0184FE447A4B41D14F9CB /* [CP] Check Pods Manifest.lock */,
 				CE9C85E72A61D2090028FC24 /* Sources */,
 				CE9C85E82A61D2090028FC24 /* Frameworks */,
 				CE9C85E92A61D2090028FC24 /* Resources */,
+				5A8529BE0E0DA3795F237045 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -436,6 +481,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F3ECA64B8A8D8D633538380 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EasySmileTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53E1232EED0DD1C27EBF1427 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EasySmile/Pods-EasySmile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EasySmile/Pods-EasySmile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasySmile/Pods-EasySmile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57B0184FE447A4B41D14F9CB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EasySmile-EasySmileUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A8529BE0E0DA3795F237045 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EasySmile-EasySmileUITests/Pods-EasySmile-EasySmileUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EasySmile-EasySmileUITests/Pods-EasySmile-EasySmileUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasySmile-EasySmileUITests/Pods-EasySmile-EasySmileUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E362855DEFC0E2B0073E53B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EasySmile-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE9C85C72A61D2040028FC24 /* Sources */ = {
@@ -630,6 +778,7 @@
 		};
 		CE9C85F62A61D2090028FC24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 952495616743234E28A26970 /* Pods-EasySmile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -651,6 +800,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pedroroca.EasySmile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -659,6 +811,7 @@
 		};
 		CE9C85F72A61D2090028FC24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 579B6E792455407755FFC936 /* Pods-EasySmile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -680,6 +833,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pedroroca.EasySmile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -688,6 +844,7 @@
 		};
 		CE9C85F92A61D2090028FC24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9B6F7962BE949BE96E4A604 /* Pods-EasySmileTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -708,6 +865,7 @@
 		};
 		CE9C85FA2A61D2090028FC24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 699EFE1B426DB487C3F9D36E /* Pods-EasySmileTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -728,6 +886,7 @@
 		};
 		CE9C85FC2A61D2090028FC24 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A13EDB8F4CCF5E372ECFA97 /* Pods-EasySmile-EasySmileUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -746,6 +905,7 @@
 		};
 		CE9C85FD2A61D2090028FC24 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9686EDF59D20EB627B3AEAED /* Pods-EasySmile-EasySmileUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

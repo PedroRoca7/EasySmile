@@ -13,7 +13,7 @@ class RegisterDentistView: UIView {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         backgroundImage.image = UIImage(named: "backgroundImage")
-        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.contentMode = .scaleToFill
         
         return backgroundImage
     }()
@@ -76,7 +76,7 @@ class RegisterDentistView: UIView {
     lazy var cpfLabel: UILabel = {
         let cpfLabel = UILabel()
         cpfLabel.translatesAutoresizingMaskIntoConstraints = false
-        cpfLabel.text = "Email:"
+        cpfLabel.text = "CPF:"
         
         return cpfLabel
     }()
@@ -164,6 +164,7 @@ class RegisterDentistView: UIView {
         ufButton.backgroundColor = .magenta
         ufButton.titleLabel?.textColor = .white
         ufButton.titleLabel?.textAlignment = .center
+        ufButton.isEnabled = false
         
         return ufButton
     }()
@@ -179,6 +180,7 @@ class RegisterDentistView: UIView {
     lazy var streetOfficeTextField: UITextField = {
         let streetOfficeTextField = UITextField()
         streetOfficeTextField.translatesAutoresizingMaskIntoConstraints = false
+        streetOfficeTextField.isEnabled = false
         streetOfficeTextField.borderStyle = .roundedRect
         
         return streetOfficeTextField
@@ -226,9 +228,9 @@ class RegisterDentistView: UIView {
     private func addElementsView() {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.ufpickerView)
         self.scrollView.addSubview(self.registerButton)
         self.scrollView.addSubview(self.stackView)
+        self.stackView.addSubview(self.ufpickerView)
         self.scrollView.contentSize = self.stackView.bounds.size
     }
     
@@ -275,8 +277,8 @@ class RegisterDentistView: UIView {
             self.registerButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
             self.registerButton.widthAnchor.constraint(equalToConstant: 200),
             
-            self.ufpickerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            self.ufpickerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
+            self.ufpickerView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
+            self.ufpickerView.centerYAnchor.constraint(equalTo: stackView.centerYAnchor)
         ])
     }
 }

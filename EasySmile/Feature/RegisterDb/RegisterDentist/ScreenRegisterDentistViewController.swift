@@ -9,10 +9,10 @@ import UIKit
 
 class ScreenRegisterDentistViewController: UIViewController {
     
-    var ufs: [String] = []
-    var cep: Cep?
-    var textFields: [UITextField] = []
-    
+    private var ufs: [String] = []
+    private var cep: Cep?
+    private var textFields: [UITextField] = []
+  
     private lazy var viewModel: RegisterDentistViewModel = {
         let viewModel = RegisterDentistViewModel()
         
@@ -41,33 +41,24 @@ class ScreenRegisterDentistViewController: UIViewController {
                       viewScreen.cpfTextField,
                       viewScreen.phoneTextField,
                       viewScreen.passwordTextField,
-                      viewScreen.numberRegistrationTextField,
-                      viewScreen.streetOfficeTextField]
+                      viewScreen.numberRegistrationTextField]
         
         addObservadoresTextField(textFields: textFields)
         hideKeyBoardWhenTapped()
-    }
-    
-    private func configNavigationController() {
-        title = "Cadastro de Odontologista"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationController?.navigationBar.prefersLargeTitles = false
-        let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
-        navigationController?.navigationBar.titleTextAttributes = textAttributed
+        viewScreen.registerButton.addTarget(self, action: #selector(registerDentist), for: .touchUpInside)
+        viewScreen.ufButton.addTarget(self, action: #selector(ufPressedButton), for: .touchUpInside)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         removeObservadoresTextField(textFields: textFields)
     }
     
-    private func configDelegatesDataSource() {
-        viewScreen.ufpickerView.delegate = self
-        viewScreen.ufpickerView.dataSource = self
-        viewScreen.cepTextField.delegate = self
-    }
-    
-    private func hiddenPickerView() {
-        viewScreen.ufpickerView.isHidden = true
+    private func configNavigationController() {
+        title = "Cadastro de Odontologista"
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
+        navigationController?.navigationBar.titleTextAttributes = textAttributed
     }
     
     private func addObservadoresTextField(textFields: [UITextField]) {
@@ -106,6 +97,17 @@ class ScreenRegisterDentistViewController: UIViewController {
         }
     }
     
+    
+    private func configDelegatesDataSource() {
+        viewScreen.ufpickerView.delegate = self
+        viewScreen.ufpickerView.dataSource = self
+        viewScreen.cepTextField.delegate = self
+    }
+    
+    private func hiddenPickerView() {
+        viewScreen.ufpickerView.isHidden = true
+    }
+    
     @objc private func ufPressedButton() {
         viewScreen.ufpickerView.isHidden = !(viewScreen.ufpickerView.isHidden)
     }
@@ -131,8 +133,8 @@ class ScreenRegisterDentistViewController: UIViewController {
             }
         })
     }
-    }
-    
+}
+
 extension ScreenRegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     // MARK: - UIPickerViewDataSource
@@ -166,7 +168,7 @@ extension ScreenRegisterDentistViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let maxLenght = 8
-       
+        
         if textField == viewScreen.cepTextField {
             let newCep = (textField.text! as NSString).replacingCharacters(in: range, with: string)
             
