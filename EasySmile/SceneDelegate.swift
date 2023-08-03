@@ -16,19 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        // Inicializar a janela do aplicativo
         let window = UIWindow(windowScene: windowScene)
         
-        // Criar a instância do seu MyViewController
         let myViewController: InitialScreenViewController = InitialScreenViewController()
         
-        // Criar a instância do navigationController com o MyViewController como o controlador raiz
         let navigationController = UINavigationController(rootViewController: myViewController)
         
-        // Definir o navigationController como a raiz da janela
         window.rootViewController = navigationController
         
-        // Tornar a janela visível
         window.makeKeyAndVisible()
         
         self.window = window

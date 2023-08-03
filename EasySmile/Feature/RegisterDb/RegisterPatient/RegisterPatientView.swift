@@ -18,6 +18,19 @@ class RegisterPatientView: UIView {
         return backgroundImage
     }()
     
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [fullNameLabel, fullNameTextField, emailLabel,
+                                                      emailTextField, cpfLabel, cpfTextField,
+                                                      phoneLabel, phoneTextField, passwordLabel,
+                                                      passwordTextField])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.spacing = 20
+        
+        return stackView
+    }()
+    
     lazy var fullNameLabel: UILabel = {
         let fullNameLabel = UILabel()
         fullNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -29,6 +42,7 @@ class RegisterPatientView: UIView {
     lazy var fullNameTextField: UITextField = {
         let fullNameTextField = UITextField()
         fullNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        fullNameTextField.borderStyle = .roundedRect
         
         return fullNameTextField
     }()
@@ -44,6 +58,8 @@ class RegisterPatientView: UIView {
     lazy var emailTextField: UITextField = {
         let emailTextField = UITextField()
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.borderStyle = .roundedRect
+        emailTextField.keyboardType = .emailAddress
         
         return emailTextField
     }()
@@ -51,7 +67,7 @@ class RegisterPatientView: UIView {
     lazy var cpfLabel: UILabel = {
         let cpfLabel = UILabel()
         cpfLabel.translatesAutoresizingMaskIntoConstraints = false
-        cpfLabel.text = "Email:"
+        cpfLabel.text = "CPF:"
         
         return cpfLabel
     }()
@@ -59,6 +75,8 @@ class RegisterPatientView: UIView {
     lazy var cpfTextField: UITextField = {
         let cpfTextField = UITextField()
         cpfTextField.translatesAutoresizingMaskIntoConstraints = false
+        cpfTextField.borderStyle = .roundedRect
+        cpfTextField.keyboardType = .numberPad
         
         return cpfTextField
     }()
@@ -74,6 +92,8 @@ class RegisterPatientView: UIView {
     lazy var phoneTextField: UITextField = {
         let phoneTextField = UITextField()
         phoneTextField.translatesAutoresizingMaskIntoConstraints = false
+        phoneTextField.borderStyle = .roundedRect
+        phoneTextField.keyboardType = .phonePad
         
         return phoneTextField
     }()
@@ -89,6 +109,8 @@ class RegisterPatientView: UIView {
     lazy var passwordTextField: UITextField = {
         let passwordTextField = UITextField()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        passwordTextField.borderStyle = .roundedRect
+        passwordTextField.isSecureTextEntry = true
         
         return passwordTextField
     }()
@@ -99,6 +121,8 @@ class RegisterPatientView: UIView {
         registerButton.setTitle("Cadastrar", for: .normal)
         registerButton.isEnabled = false
         registerButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
+        registerButton.backgroundColor = .darkGray
+        registerButton.layer.cornerRadius = 20
         
         return registerButton
     }()
@@ -115,16 +139,7 @@ class RegisterPatientView: UIView {
     
     private func addElementsView() {
         self.addSubview(self.backgroundImage)
-        self.addSubview(self.fullNameLabel)
-        self.addSubview(self.fullNameTextField)
-        self.addSubview(self.emailLabel)
-        self.addSubview(self.emailTextField)
-        self.addSubview(self.cpfLabel)
-        self.addSubview(self.cpfTextField)
-        self.addSubview(self.phoneLabel)
-        self.addSubview(self.phoneTextField)
-        self.addSubview(self.passwordLabel)
-        self.addSubview(self.passwordTextField)
+        self.addSubview(self.stackView)
         self.addSubview(self.registerButton)
     }
     
@@ -139,49 +154,23 @@ class RegisterPatientView: UIView {
             self.backgroundImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            self.fullNameLabel.topAnchor.constraint(equalTo: guide.topAnchor, constant: 30),
-            self.fullNameLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
-            self.fullNameLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -313),
+            self.stackView.topAnchor.constraint(equalTo: guide.topAnchor),
+            self.stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            self.stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.stackView.bottomAnchor.constraint(equalTo: registerButton.topAnchor, constant: -30),
             
-            self.fullNameTextField.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 10),
-            self.fullNameTextField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -50),
-            self.fullNameTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
+            self.fullNameTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.emailLabel.topAnchor.constraint(equalTo: fullNameTextField.bottomAnchor, constant: 20),
-            self.emailLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
-            self.emailLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -313),
+            self.emailTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
-            self.emailTextField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -50),
-            self.emailTextField.leadingAnchor.constraint(equalTo: emailLabel.leadingAnchor),
+            self.cpfTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.cpfLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            self.cpfLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
-            self.cpfLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -313),
+            self.phoneTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.cpfTextField.topAnchor.constraint(equalTo: cpfLabel.bottomAnchor, constant: 10),
-            self.cpfTextField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -50),
-            self.cpfTextField.leadingAnchor.constraint(equalTo: cpfLabel.leadingAnchor),
-            
-            self.phoneLabel.topAnchor.constraint(equalTo: cpfTextField.bottomAnchor, constant: 20),
-            self.phoneLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
-            self.phoneLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -313),
-            
-            self.phoneTextField.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 10),
-            self.phoneTextField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -50),
-            self.phoneTextField.leadingAnchor.constraint(equalTo: phoneLabel.leadingAnchor),
-            
-            self.passwordLabel.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 20),
-            self.passwordLabel.leadingAnchor.constraint(equalTo: guide.leadingAnchor, constant: 30),
-            self.passwordLabel.trailingAnchor.constraint(greaterThanOrEqualTo: guide.trailingAnchor, constant: -313),
-            
-            self.passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 10),
-            self.passwordTextField.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -50),
-            self.passwordTextField.leadingAnchor.constraint(equalTo: passwordLabel.leadingAnchor),
+            self.passwordTextField.widthAnchor.constraint(equalToConstant: 350),
             
             self.registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.registerButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 100),
-            self.registerButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 250)
+            self.registerButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     

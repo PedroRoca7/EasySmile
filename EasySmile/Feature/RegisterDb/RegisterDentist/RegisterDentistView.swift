@@ -31,8 +31,7 @@ class RegisterDentistView: UIView {
                                                       phoneLabel, phoneTextField, numberRegistrationLabel,
                                                       numberRegistrationTextField, cepLabel, cepTextField,
                                                       ufLabel, ufButton, streetOfficeLabel,
-                                                      streetOfficeTextField, passwordLabel, passwordTextField,
-                                                      registerButton])
+                                                      streetOfficeTextField, passwordLabel, passwordTextField])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -145,6 +144,7 @@ class RegisterDentistView: UIView {
         let cepTextField = UITextField()
         cepTextField.translatesAutoresizingMaskIntoConstraints = false
         cepTextField.borderStyle = .roundedRect
+        cepTextField.keyboardType = .numberPad
         
         return cepTextField
     }()
@@ -196,6 +196,7 @@ class RegisterDentistView: UIView {
         let passwordTextField = UITextField()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.borderStyle = .roundedRect
+        passwordTextField.isSecureTextEntry = true
         
         return passwordTextField
     }()
@@ -206,7 +207,7 @@ class RegisterDentistView: UIView {
         registerButton.setTitle("Cadastrar", for: .normal)
         registerButton.isEnabled = false
         registerButton.titleLabel?.font = UIFont(name: "Arial Rounded MT Bold", size: 22)
-        registerButton.backgroundColor = .magenta
+        registerButton.backgroundColor = .darkGray
         registerButton.layer.cornerRadius = 20
         
         return registerButton
@@ -225,6 +226,8 @@ class RegisterDentistView: UIView {
     private func addElementsView() {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.scrollView)
+        self.scrollView.addSubview(self.ufpickerView)
+        self.scrollView.addSubview(self.registerButton)
         self.scrollView.addSubview(self.stackView)
         self.scrollView.contentSize = self.stackView.bounds.size
     }
@@ -240,14 +243,14 @@ class RegisterDentistView: UIView {
             self.backgroundImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             self.scrollView.topAnchor.constraint(equalTo: guide.topAnchor),
-            self.scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
             self.scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             self.stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             self.stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             self.stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            self.stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            self.stackView.bottomAnchor.constraint(equalTo: registerButton.topAnchor, constant: -30),
             self.stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             self.fullNameTextField.widthAnchor.constraint(equalToConstant: 350),
@@ -268,11 +271,12 @@ class RegisterDentistView: UIView {
             
             self.passwordTextField.widthAnchor.constraint(equalToConstant: 350),
             
-            self.registerButton.centerXAnchor.constraint(equalTo: stackView.centerXAnchor)
+            self.registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.registerButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
+            self.registerButton.widthAnchor.constraint(equalToConstant: 200),
             
-            
-//            self.ufpickerView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
-//            self.ufpickerView.centerYAnchor.constraint(equalTo: stackView.centerYAnchor)
+            self.ufpickerView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            self.ufpickerView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
         ])
     }
 }

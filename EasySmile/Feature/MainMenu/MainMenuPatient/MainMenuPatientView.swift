@@ -28,6 +28,7 @@ class MainMenuPatientView: UIView {
     lazy var myProfileButton: UIButton = {
         let myProfileButton = UIButton()
         myProfileButton.translatesAutoresizingMaskIntoConstraints = false
+        myProfileButton.setImage(UIImage(named: "iconePerfil"), for: .normal)
         
         return myProfileButton
         
@@ -36,6 +37,7 @@ class MainMenuPatientView: UIView {
     lazy var searchDentistButton: UIButton = {
         let searchDentisButton = UIButton()
         searchDentisButton.translatesAutoresizingMaskIntoConstraints = false
+        searchDentisButton.setImage(UIImage(named: "iconeLupa"), for: .normal)
         
         return searchDentisButton
     }()

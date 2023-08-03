@@ -53,6 +53,7 @@ class LoginView: UIView {
         senhaTextField.borderStyle = .roundedRect
         senhaTextField.font = UIFont.systemFont(ofSize: 22)
         senhaTextField.placeholder = "Digite sua Senha:"
+        senhaTextField.isSecureTextEntry = true
         
         return senhaTextField
     }()

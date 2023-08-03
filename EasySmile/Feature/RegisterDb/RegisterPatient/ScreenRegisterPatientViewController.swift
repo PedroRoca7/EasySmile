@@ -31,6 +31,7 @@ class ScreenRegisterPatientViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configNavigationController()
         textFields = [viewScreen.fullNameTextField,
                       viewScreen.emailTextField,
                       viewScreen.cpfTextField,
@@ -44,6 +45,14 @@ class ScreenRegisterPatientViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         removeObservadoresTextField(textFileds: textFields)
+    }
+    
+    private func configNavigationController() {
+        title = "Cadastro de Paciente"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
+        navigationController?.navigationBar.titleTextAttributes = textAttributed
     }
     
     private func addObservadoresTextField(textFileds: [UITextField]) {

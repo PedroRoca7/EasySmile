@@ -30,8 +30,17 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configNavigationController()
         viewScreen.loginButton.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
         hideKeyBoardWhenTapped()
+    }
+    
+    private func configNavigationController() {
+        title = "Login"
+        navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
+        navigationController?.navigationBar.largeTitleTextAttributes = textAttributed
     }
     
     @objc private func loginPressed() {
@@ -50,13 +59,11 @@ class LoginViewController: UIViewController {
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
             } else if let patient = patient {
                 self.patient = Patient(nome: patient.nome, email: patient.email, cpf: patient.cpf, telefone: patient.telefone, senha: "")
-                self.performSegue(withIdentifier: "MainMenuPatientSegue", sender: self.patient)
                 let mainMenuPatient = MainMenuPatientViewController()
                 mainMenuPatient.patientData = self.patient
                 self.navigationController?.pushViewController(mainMenuPatient, animated: true)
             } else if let dentist = dentist {
                 self.dentist = Dentist(nome: dentist.nome, email: dentist.email, cpf: dentist.cpf, telefone: dentist.telefone, numeroDaInscricao: dentist.numeroDaInscricao, uf: dentist.uf, ruaDoConsultorio: dentist.ruaDoConsultorio, senha: "")
-                self.performSegue(withIdentifier: "MainMenuDentistSegue", sender: self.dentist)
                 let mainMenuDentist = MainMenuDentistViewController()
                 mainMenuDentist.dentistData = self.dentist
                 self.navigationController?.pushViewController(mainMenuDentist, animated: true)

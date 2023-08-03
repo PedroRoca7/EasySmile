@@ -31,6 +31,7 @@ class ScreenRegisterDentistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configNavigationController()
         let viewModel = viewModel
         ufs = viewModel.ufs
         hiddenPickerView()
@@ -45,6 +46,14 @@ class ScreenRegisterDentistViewController: UIViewController {
         
         addObservadoresTextField(textFields: textFields)
         hideKeyBoardWhenTapped()
+    }
+    
+    private func configNavigationController() {
+        title = "Cadastro de Odontologista"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationController?.navigationBar.prefersLargeTitles = false
+        let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
+        navigationController?.navigationBar.titleTextAttributes = textAttributed
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -156,8 +165,14 @@ extension ScreenRegisterDentistViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
+        let maxLenght = 8
+       
         if textField == viewScreen.cepTextField {
             let newCep = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            
+            if newCep.count > maxLenght {
+                return false
+            }
             
             if newCep.count == 8 {
                 

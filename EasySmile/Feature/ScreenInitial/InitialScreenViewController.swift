@@ -11,7 +11,7 @@ class InitialScreenViewController: UIViewController {
     
     private lazy var viewScreen: InitialScreenView = {
        let viewScreen = InitialScreenView()
-        
+
         return viewScreen
     }()
     
@@ -21,6 +21,7 @@ class InitialScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         viewScreen.loginButton.addTarget(self, action: #selector(loginPressed(sender:)), for: .touchUpInside)
         viewScreen.registerButton.addTarget(self, action: #selector(registerPressed(sender:)), for: .touchUpInside)
     }
@@ -34,6 +35,7 @@ class InitialScreenViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
