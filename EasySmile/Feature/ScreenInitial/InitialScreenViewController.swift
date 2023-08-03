@@ -9,21 +9,18 @@ import UIKit
 
 class InitialScreenViewController: UIViewController {
     
-    private var viewScreen = InitialScreenView()
-    
-//    private lazy var viewScreen: InitialScreenView = {
-//       let viewScreen = InitialScreenView()
-//
-//        return viewScreen
-//    }()
+    private lazy var viewScreen: InitialScreenView = {
+       let viewScreen = InitialScreenView()
+
+        return viewScreen
+    }()
     
     override func loadView() {
-        
+        self.view = viewScreen
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = viewScreen
         viewScreen.loginButton.addTarget(self, action: #selector(loginPressed(sender:)), for: .touchUpInside)
         viewScreen.registerButton.addTarget(self, action: #selector(registerPressed(sender:)), for: .touchUpInside)
     }
@@ -34,11 +31,11 @@ class InitialScreenViewController: UIViewController {
     }
     
     @objc private func registerPressed(sender: UIButton) {
-        navigationController?.pushViewController(PatientOrDentistViewController(), animated: true)
+        let patientOrDentistViewController = PatientOrDentistViewController()
+        navigationController?.pushViewController(patientOrDentistViewController, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     

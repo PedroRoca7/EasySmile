@@ -12,8 +12,8 @@ class LoginView: UIView {
     lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        backgroundImage.image = UIImage(named: "backgroundTelaLogin")
-        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.image = UIImage(named: "backgroundImage")
+        backgroundImage.contentMode = .scaleToFill
         
         return backgroundImage
     }()

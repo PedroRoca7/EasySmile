@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func loginPressed() {
-    
+        
         guard let email = viewScreen.emailTextField.text,
               let senha = viewScreen.passwordTextField.text,
               !email.isEmpty,
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
             Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
             return
         }
-        
+
         viewModel.login(email: email, senha: senha, completion: { patient, dentist, error in
             if let error = error {
                 print("Erro ao fazer login: \(error.localizedDescription)")
