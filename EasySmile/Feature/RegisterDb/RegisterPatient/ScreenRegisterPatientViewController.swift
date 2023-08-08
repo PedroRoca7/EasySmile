@@ -34,6 +34,8 @@ class ScreenRegisterPatientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavigationController()
+        hideKeyBoardWhenTapped()
+        viewModel.delegate = self
         textFields = [viewScreen.fullNameTextField,
                       viewScreen.emailTextField,
                       viewScreen.cpfTextField,
@@ -53,8 +55,18 @@ class ScreenRegisterPatientViewController: UIViewController {
             })
             .disposed(by: disposedBag)
         
-        hideKeyBoardWhenTapped()
-        viewScreen.registerButton.addTarget(self, action: #selector(registerPatient), for: .touchUpInside)
+        viewScreen.registerButton.rx.tap.bind {
+            guard let nome = self.viewScreen.fullNameTextField.text,
+                  let email = self.viewScreen.emailTextField.text,
+                  let cpf = self.viewScreen.cpfTextField.text,
+                  let telefone = self.viewScreen.phoneTextField.text,
+                  let senha = self.viewScreen.passwordTextField.text else { return }
+            
+            let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)
+            
+            self.viewModel.registerPatientDb(patient: patient)
+            
+        }.disposed(by: disposedBag)
     }
         
     private func configNavigationController() {
@@ -64,24 +76,17 @@ class ScreenRegisterPatientViewController: UIViewController {
         let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
         navigationController?.navigationBar.titleTextAttributes = textAttributed
     }
-    
-    @objc private func registerPatient() {
-        
-        guard let nome = viewScreen.fullNameTextField.text,
-              let email = viewScreen.emailTextField.text,
-              let cpf = viewScreen.cpfTextField.text,
-              let telefone = viewScreen.phoneTextField.text,
-              let senha = viewScreen.passwordTextField.text else { return }
-        
-        let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: senha)
-        
-        viewModel.registerPatientDb(patient: patient, onComplete: { result in
-            if result {
-                Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
-            } else {
-                Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
-            }
-        })
-    }
 }
 
+extension ScreenRegisterPatientViewController: RegisterPatientViewModelProtocol {
+    func success() {
+        Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
+    }
+    
+    func failure(error: Error) {
+        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
+        print("Erro ao cadastrar: \(error.localizedDescription)")
+    }
+    
+    
+}

@@ -9,14 +9,25 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
+protocol RegisterDentistViewModelProtocol: AnyObject {
+    func successCep(dataCep: Cep)
+    func failureCep(error: Error)
+    func successRegister()
+    func failureRegister(error: Error)
+    
+}
+
 class RegisterDentistViewModel {
     
-    public func registerDentistDb(dentist: Dentist, onComplete: @escaping (Bool) -> Void) {
+    weak var  delegate: RegisterDentistViewModelProtocol?
+    
+    public func registerDentistDb(dentist: Dentist) {
         
         Auth.auth().createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in
             
             if let error = error {
-                print("Erro ao cadastrar conta: \(error.localizedDescription)")
+                self.delegate?.failureRegister(error: error)
+                
             } else if let user = result?.user {
                 let userID = user.uid
                 
@@ -34,22 +45,23 @@ class RegisterDentistViewModel {
                 
                 db.collection("Odontologistas").document(userID).setData(userData) { error in
                     if let error = error {
-                        print("Erro ao cadastrar Odontologista: \(error.localizedDescription)")
-                        onComplete(false)
+                        self.delegate?.failureRegister(error: error)
                     } else {
-                        onComplete(true)
+                        self.delegate?.successRegister()
                     }
                 }
             }
         }
     }
         
-    public func buscarCep(cep: String, completion: @escaping (Cep?) -> Void) {
-        ApiCep.searchCep(cep: cep) {  dataCep in
-            if let cep = dataCep {
-                completion(cep)
+    public func buscarCep(cep: String) {
+        ApiCep.searchCep(cep: cep) {  dataCep , error in
+            if error == nil {
+                guard let cep = dataCep else { return }
+                self.delegate?.successCep(dataCep: cep)
             } else {
-                completion(nil)
+                guard let error = error else { return }
+                self.delegate?.failureCep(error: error)
             }
         }
     }

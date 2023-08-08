@@ -7,20 +7,11 @@
 
 import Foundation
 
-class Patient {
+struct Patient {
     
     var nome: String
     var email: String
     var cpf: String
     var telefone: String
     var senha: String
-    
-    init(nome: String, email: String, cpf: String, telefone: String, senha: String) {
-        self.nome = nome
-        self.email = email
-        self.cpf = cpf
-        self.telefone = telefone
-        self.senha = senha
-    }
-    
 }

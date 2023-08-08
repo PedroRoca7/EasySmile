@@ -9,18 +9,23 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
+protocol LoginViewModelProtocol: AnyObject {
+    func successPatient(patient: Patient)
+    func successDentist(dentist: Dentist)
+    func failure(error: Error)
+}
 
 class LoginViewModel {
     
     var logradouro: String?
     var uf: String?
+    weak var delegate: LoginViewModelProtocol?
     
-    public func login(email: String, senha: String, completion: @escaping (Patient?,Dentist?, Error?) -> Void) {
+    public func login(email: String, senha: String) {
         
         Auth.auth().signIn(withEmail: email, password: senha) { (result, error) in
             if let error = error {
-                print("Erro ao fazer login: \(error.localizedDescription)")
-                completion(nil, nil, error)
+                self.delegate?.failure(error: error)
             } else if let user = result?.user {
                 self.checkUserCollection { result in
                     if result {
@@ -36,10 +41,11 @@ class LoginViewModel {
                                           let cpf = userData["cpf"] as? String,
                                           let telefone = userData["telefone"] as? String else { return }
                                     let patient = Patient(nome: nome, email: email, cpf: cpf, telefone: telefone, senha: "")
-                                    completion(patient, nil, nil)
+                                    self.delegate?.successPatient(patient: patient)
                                 } else {
                                     print("Documento do paciente não encontrado ou ocorreu um erro: \(error?.localizedDescription ?? "Erro desconhecido")")
-                                    completion(nil, nil, error)
+                                    guard let error = error else { return }
+                                    self.delegate?.failure(error: error)
                                 }
                             }
                         }
@@ -59,10 +65,11 @@ class LoginViewModel {
                                           let uf = userData["uf"] as? String,
                                           let ruaDoConsultorio = userData["ruaDoConsultorio"] as? String else { return }
                                     let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, numeroDaInscricao: numeroDaInscricaoConselho, uf: uf, ruaDoConsultorio: ruaDoConsultorio, senha: "")
-                                    completion(nil, dentist, nil)
+                                    self.delegate?.successDentist(dentist: dentist)
                                 } else {
                                     print("Documento do paciente não encontrado ou ocorreu um erro: \(error?.localizedDescription ?? "Erro desconhecido")")
-                                    completion(nil, nil, error)
+                                    guard let error = error else { return }
+                                    self.delegate?.failure(error: error)
                                 }
                             }
                         }

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class InitialScreenViewController: UIViewController {
     
@@ -15,26 +17,27 @@ class InitialScreenViewController: UIViewController {
         return viewScreen
     }()
     
+    private let disposedBag = DisposeBag()
+    
     override func loadView() {
         self.view = viewScreen
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewScreen.loginButton.addTarget(self, action: #selector(loginPressed(sender:)), for: .touchUpInside)
-        viewScreen.registerButton.addTarget(self, action: #selector(registerPressed(sender:)), for: .touchUpInside)
+        
+        viewScreen.loginButton.rx.tap.bind {
+            let loginViewController = LoginViewController()
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+        }.disposed(by: disposedBag)
+        
+        viewScreen.registerButton.rx.tap.bind {
+            let patientOrDentistViewController = PatientOrDentistViewController()
+            self.navigationController?.pushViewController(patientOrDentistViewController, animated: true)
+        }.disposed(by: disposedBag)
     }
-    
-    @objc private func loginPressed(sender: UIButton) {
-        let loginViewController = LoginViewController()
-        navigationController?.pushViewController(loginViewController, animated: true)
-    }
-    
-    @objc private func registerPressed(sender: UIButton) {
-        let patientOrDentistViewController = PatientOrDentistViewController()
-        navigationController?.pushViewController(patientOrDentistViewController, animated: true)
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }

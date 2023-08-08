@@ -9,7 +9,7 @@ import Foundation
 
 class ApiCep {
     
-    class public func searchCep(cep: String, completion: @escaping (Cep?) -> Void) {
+    class public func searchCep(cep: String, completion: @escaping (Cep?, Error?) -> Void) {
         guard let url = URL(string: "https://viacep.com.br/ws/\(cep)/json/") else {return}
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error == nil {
@@ -20,24 +20,24 @@ class ApiCep {
                     do {
                         let cep = try JSONDecoder().decode(Cep.self, from: data)
                         DispatchQueue.main.async {
-                            completion(cep)
+                            completion(cep,nil)
                         }
                     } catch {
                         print(error.localizedDescription)
                         DispatchQueue.main.async {
-                            completion(nil)
+                            completion(nil, error)
                         }
                     }
                 } else {
                     print("Status inválido do servidor, Status Code: \(response.statusCode)")
                     DispatchQueue.main.async {
-                        completion(nil)
+                        completion(nil, error)
                     }
                 }
             } else {
                 print(error!.localizedDescription)
                 DispatchQueue.main.async {
-                    completion(nil)
+                    completion(nil, error)
                 }
             }
         } .resume()

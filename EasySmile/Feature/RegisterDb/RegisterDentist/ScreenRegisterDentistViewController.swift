@@ -34,7 +34,9 @@ class ScreenRegisterDentistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavigationController()
-       
+        hideKeyBoardWhenTapped()
+        viewModel.delegate = self
+        
         textFields = [viewScreen.fullNameTextField,
                       viewScreen.emailTextField,
                       viewScreen.cpfTextField,
@@ -53,34 +55,36 @@ class ScreenRegisterDentistViewController: UIViewController {
                 self?.viewScreen.registerButton.backgroundColor = allFields ? .magenta : .darkGray
             })
             .disposed(by: disposedBag)
-
-        viewScreen.cepTextField.rx.controlEvent(.editingChanged)
-            .subscribe(onNext: { [weak self] in
-                guard let text = self?.viewScreen.cepTextField.text else { return }
-                
-                if text.count == 8 {
-                    
-                    self?.viewModel.buscarCep(cep: text, completion: { dataCep in
-                        if dataCep != nil {
-                            self?.viewScreen.streetOfficeTextField.text = dataCep?.logradouro
-                            self?.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
-                            self?.viewScreen.ufButton.setTitle(dataCep?.uf, for: .normal)
-                        }
-                    })
-                } else if text.count > 8 {
-                    let index = text.index(text.startIndex, offsetBy: 8)
-                    self?.viewScreen.cepTextField.text = String(text[..<index])
-                } else {
-                    self?.viewScreen.ufButton.setTitle("UF", for: .normal)
-                    self?.viewScreen.streetOfficeTextField.text = ""
-                    self?.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
-                }
-            })
-            .disposed(by: disposedBag)
         
-        hideKeyBoardWhenTapped()
-        viewScreen.registerButton.addTarget(self, action: #selector(registerDentist), for: .touchUpInside)
-       
+        let textFieldCep = viewScreen.cepTextField.rx.text.orEmpty.asObservable()
+        textFieldCep.subscribe { [weak self] text in
+            if text.count == 8 {
+                self?.viewModel.buscarCep(cep: text)
+            } else if text.count > 8 {
+                let index = text.index(text.startIndex, offsetBy: 8)
+                self?.viewScreen.cepTextField.text = String(text[..<index])
+            } else {
+                self?.viewScreen.ufButton.setTitle("UF", for: .normal)
+                self?.viewScreen.streetOfficeTextField.text = ""
+                self?.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
+            }
+        }.disposed(by: disposedBag)
+        
+        viewScreen.registerButton.rx.tap.bind {
+            guard let nome = self.viewScreen.fullNameTextField.text,
+                  let email = self.viewScreen.emailTextField.text,
+                  let cpf = self.viewScreen.cpfTextField.text,
+                  let telefone = self.viewScreen.phoneTextField.text,
+                  let numeroInscricaoConselho = self.viewScreen.numberRegistrationTextField.text,
+                  let ruaConsultorio = self.viewScreen.streetOfficeTextField.text,
+                  let uf = self.viewScreen.ufButton.title(for: .normal),
+                  let senha = self.viewScreen.passwordTextField.text else { return }
+            
+            let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, numeroDaInscricao: numeroInscricaoConselho, uf: uf, ruaDoConsultorio: ruaConsultorio, senha: senha)
+            
+            self.viewModel.registerDentistDb(dentist: dentist)
+            
+        }.disposed(by: disposedBag)
     }
         
     private func configNavigationController() {
@@ -90,26 +94,27 @@ class ScreenRegisterDentistViewController: UIViewController {
         let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
         navigationController?.navigationBar.titleTextAttributes = textAttributed
     }
-    
-    @objc private func registerDentist() {
-        
-        guard let nome = viewScreen.fullNameTextField.text,
-              let email = viewScreen.emailTextField.text,
-              let cpf = viewScreen.cpfTextField.text,
-              let telefone = viewScreen.phoneTextField.text,
-              let numeroInscricaoConselho = viewScreen.numberRegistrationTextField.text,
-              let ruaConsultorio = viewScreen.streetOfficeTextField.text,
-              let uf = viewScreen.ufButton.title(for: .normal),
-              let senha = viewScreen.passwordTextField.text else { return }
-        
-        let dentist = Dentist(nome: nome, email: email, cpf: cpf, telefone: telefone, numeroDaInscricao: numeroInscricaoConselho, uf: uf, ruaDoConsultorio: ruaConsultorio, senha: senha)
-        
-        viewModel.registerDentistDb(dentist: dentist, onComplete: { result in
-            if result {
-                Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
-            } else {
-                Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
-            }
-        })
+
+}
+
+extension ScreenRegisterDentistViewController: RegisterDentistViewModelProtocol {
+    func successCep(dataCep: Cep) {
+        self.viewScreen.streetOfficeTextField.text = dataCep.logradouro
+        self.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
+        self.viewScreen.ufButton.setTitle(dataCep.uf, for: .normal)
     }
+    
+    func failureCep(error: Error) {
+        Alert.showBasicAlert(title: "Error", message: "\(error.localizedDescription)", viewController: self)
+    }
+    
+    func successRegister() {
+        Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
+    }
+    
+    func failureRegister(error: Error) {
+        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
+    }
+    
+    
 }

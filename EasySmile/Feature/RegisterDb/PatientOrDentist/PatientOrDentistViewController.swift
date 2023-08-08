@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PatientOrDentistViewController: UIViewController {
     
@@ -15,6 +17,8 @@ class PatientOrDentistViewController: UIViewController {
         return viewScreen
     }()
     
+    private let disposedBag = DisposeBag()
+    
     override func loadView() {
         self.view = viewScreen
         
@@ -22,19 +26,20 @@ class PatientOrDentistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configNavigation()
+       
+        viewScreen.patientButton.rx.tap.bind {
+            let screenRegisterPatientViewController = ScreenRegisterPatientViewController()
+            self.navigationController?.pushViewController(screenRegisterPatientViewController, animated: true)
+        }.disposed(by: disposedBag)
+        
+        viewScreen.dentistButton.rx.tap.bind {
+            let screenRegisterDentistViewController = ScreenRegisterDentistViewController()
+            self.navigationController?.pushViewController(screenRegisterDentistViewController, animated: true)
+        }.disposed(by: disposedBag)
+    }
+    
+    private func configNavigation() {
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        viewScreen.patientButton.addTarget(self, action: #selector(patientButtonPressed(sender:)), for: .touchUpInside)
-        viewScreen.dentistButton.addTarget(self, action: #selector(dentistButtonPressed(sender:)), for: .touchUpInside)
     }
-    
-    @objc private func dentistButtonPressed(sender: UIButton) {
-        let screenRegisterDentistViewController = ScreenRegisterDentistViewController()
-        navigationController?.pushViewController(screenRegisterDentistViewController, animated: true)
-    }
-    
-    @objc private func patientButtonPressed(sender: UIButton) {
-        let screenRegisterPatientViewController = ScreenRegisterPatientViewController()
-        navigationController?.pushViewController(screenRegisterPatientViewController, animated: true)
-    }
-    
 }

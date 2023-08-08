@@ -9,14 +9,21 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
+protocol RegisterPatientViewModelProtocol: AnyObject {
+    func success()
+    func failure(error: Error)
+}
+
 class RegisterPatientViewModel {
 
-    public func registerPatientDb(patient: Patient, onComplete: @escaping (Bool) -> Void) {
+    weak var delegate: RegisterPatientViewModelProtocol?
+    
+    public func registerPatientDb(patient: Patient) {
         
         Auth.auth().createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
             
             if let error = error {
-                print("Erro ao cadastrar conta: \(error.localizedDescription)")
+                self.delegate?.failure(error: error)
             } else if let user = result?.user {
                 let userID = user.uid
                 
@@ -31,10 +38,9 @@ class RegisterPatientViewModel {
                 
                 db.collection("Pacientes").document(userID).setData(userData) { error in
                     if let error = error {
-                        print("Erro ao cadastrar Paciente: \(error.localizedDescription)")
-                        onComplete(false)
+                        self.delegate?.failure(error: error)
                     } else {
-                        onComplete(true)
+                        self.delegate?.success()
                     }
                 }
             }
