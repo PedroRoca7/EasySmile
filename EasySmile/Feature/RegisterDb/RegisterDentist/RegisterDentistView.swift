@@ -124,14 +124,6 @@ class RegisterDentistView: UIView {
         return numberRegistrationTextField
     }()
     
-    lazy var ufpickerView: UIPickerView = {
-        let ufpickerView = UIPickerView()
-        ufpickerView.translatesAutoresizingMaskIntoConstraints = false
-        ufpickerView.isHidden = true
-        
-        return ufpickerView
-    }()
-    
     lazy var cepLabel: UILabel = {
         let cepLabel = UILabel()
         cepLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -230,7 +222,6 @@ class RegisterDentistView: UIView {
         self.addSubview(self.scrollView)
         self.scrollView.addSubview(self.registerButton)
         self.scrollView.addSubview(self.stackView)
-        self.stackView.addSubview(self.ufpickerView)
         self.scrollView.contentSize = self.stackView.bounds.size
     }
     
@@ -275,10 +266,7 @@ class RegisterDentistView: UIView {
             
             self.registerButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.registerButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -30),
-            self.registerButton.widthAnchor.constraint(equalToConstant: 200),
-            
-            self.ufpickerView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
-            self.ufpickerView.centerYAnchor.constraint(equalTo: stackView.centerYAnchor)
+            self.registerButton.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
 }

@@ -19,18 +19,26 @@ class ApiCep {
                     guard let data = data else { return }
                     do {
                         let cep = try JSONDecoder().decode(Cep.self, from: data)
-                        completion(cep)
+                        DispatchQueue.main.async {
+                            completion(cep)
+                        }
                     } catch {
                         print(error.localizedDescription)
-                        completion(nil)
+                        DispatchQueue.main.async {
+                            completion(nil)
+                        }
                     }
                 } else {
                     print("Status inválido do servidor, Status Code: \(response.statusCode)")
-                    completion(nil)
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
                 }
             } else {
                 print(error!.localizedDescription)
-                completion(nil)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
         } .resume()
     }

@@ -11,12 +11,6 @@ import FirebaseFirestore
 
 class RegisterDentistViewModel {
     
-    private var _ufs : [String] = ["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"]
-    
-    var ufs: [String] {
-        return _ufs
-    }
-    
     public func registerDentistDb(dentist: Dentist, onComplete: @escaping (Bool) -> Void) {
         
         Auth.auth().createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in

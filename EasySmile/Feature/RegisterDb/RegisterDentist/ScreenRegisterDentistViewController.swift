@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class ScreenRegisterDentistViewController: UIViewController {
     
-    private var ufs: [String] = []
     private var cep: Cep?
     private var textFields: [UITextField] = []
-  
+    private var disposedBag = DisposeBag()
+
     private lazy var viewModel: RegisterDentistViewModel = {
         let viewModel = RegisterDentistViewModel()
         
@@ -32,84 +34,61 @@ class ScreenRegisterDentistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configNavigationController()
-        let viewModel = viewModel
-        ufs = viewModel.ufs
-        hiddenPickerView()
-        configDelegatesDataSource()
+       
         textFields = [viewScreen.fullNameTextField,
                       viewScreen.emailTextField,
                       viewScreen.cpfTextField,
                       viewScreen.phoneTextField,
                       viewScreen.passwordTextField,
-                      viewScreen.numberRegistrationTextField]
+                      viewScreen.numberRegistrationTextField,
+                      viewScreen.streetOfficeTextField]
+                
+        let textFieldsObservables = textFields.map { $0.rx.value.orEmpty.asObservable() }
+        let combinedObservables = Observable.combineLatest(textFieldsObservables) { texts in
+            return texts.allSatisfy { !$0.isEmpty }
+        }
+        combinedObservables
+            .subscribe(onNext: { [weak self]  allFields in
+                self?.viewScreen.registerButton.isEnabled = allFields
+                self?.viewScreen.registerButton.backgroundColor = allFields ? .magenta : .darkGray
+            })
+            .disposed(by: disposedBag)
+
+        viewScreen.cepTextField.rx.controlEvent(.editingChanged)
+            .subscribe(onNext: { [weak self] in
+                guard let text = self?.viewScreen.cepTextField.text else { return }
+                
+                if text.count == 8 {
+                    
+                    self?.viewModel.buscarCep(cep: text, completion: { dataCep in
+                        if dataCep != nil {
+                            self?.viewScreen.streetOfficeTextField.text = dataCep?.logradouro
+                            self?.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
+                            self?.viewScreen.ufButton.setTitle(dataCep?.uf, for: .normal)
+                        }
+                    })
+                } else if text.count > 8 {
+                    let index = text.index(text.startIndex, offsetBy: 8)
+                    self?.viewScreen.cepTextField.text = String(text[..<index])
+                } else {
+                    self?.viewScreen.ufButton.setTitle("UF", for: .normal)
+                    self?.viewScreen.streetOfficeTextField.text = ""
+                    self?.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
+                }
+            })
+            .disposed(by: disposedBag)
         
-        addObservadoresTextField(textFields: textFields)
         hideKeyBoardWhenTapped()
         viewScreen.registerButton.addTarget(self, action: #selector(registerDentist), for: .touchUpInside)
-        viewScreen.ufButton.addTarget(self, action: #selector(ufPressedButton), for: .touchUpInside)
+       
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        removeObservadoresTextField(textFields: textFields)
-    }
-    
+        
     private func configNavigationController() {
         title = "Cadastro de Odontologista"
         navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationController?.navigationBar.prefersLargeTitles = false
         let textAttributed = [NSAttributedString.Key.foregroundColor: UIColor.magenta]
         navigationController?.navigationBar.titleTextAttributes = textAttributed
-    }
-    
-    private func addObservadoresTextField(textFields: [UITextField]) {
-        for textField in textFields {
-            textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        }
-    }
-    
-    private func removeObservadoresTextField(textFields: [UITextField]) {
-        for textField in textFields {
-            textField.removeTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        }
-    }
-    
-    @objc func textFieldDidChange() {
-        checkTextFieldIsEmpty()
-    }
-    
-    private func checkTextFieldIsEmpty() {
-        
-        var allFieldsFilled = true
-        
-        for textField in textFields {
-            if let text = textField.text, text.isEmpty {
-                allFieldsFilled = false
-                break
-            }
-        }
-        
-        if allFieldsFilled {
-            viewScreen.registerButton.isEnabled = true
-            viewScreen.registerButton.backgroundColor = .magenta
-        } else {
-            viewScreen.registerButton.isEnabled = false
-            viewScreen.registerButton.backgroundColor = .darkGray
-        }
-    }
-    
-    
-    private func configDelegatesDataSource() {
-        viewScreen.ufpickerView.delegate = self
-        viewScreen.ufpickerView.dataSource = self
-        viewScreen.cepTextField.delegate = self
-    }
-    
-    private func hiddenPickerView() {
-        viewScreen.ufpickerView.isHidden = true
-    }
-    
-    @objc private func ufPressedButton() {
-        viewScreen.ufpickerView.isHidden = !(viewScreen.ufpickerView.isHidden)
     }
     
     @objc private func registerDentist() {
@@ -132,69 +111,5 @@ class ScreenRegisterDentistViewController: UIViewController {
                 Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
             }
         })
-    }
-}
-
-extension ScreenRegisterDentistViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    // MARK: - UIPickerViewDataSource
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return ufs.count
-    }
-    
-    // MARK: - UIPickerViewDelegate
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return ufs[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedUf = ufs[row]
-        viewScreen.ufButton.setTitle(selectedUf, for: .normal)
-        hiddenPickerView()
-    }
-    
-}
-
-extension ScreenRegisterDentistViewController: UITextFieldDelegate {
-    
-    // MARK: - UITextFieldDelegate
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let maxLenght = 8
-        
-        if textField == viewScreen.cepTextField {
-            let newCep = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-            
-            if newCep.count > maxLenght {
-                return false
-            }
-            
-            if newCep.count == 8 {
-                
-                viewModel.buscarCep(cep: newCep, completion: { dataCep in
-                    if dataCep != nil {
-                        DispatchQueue.main.async {
-                            self.viewScreen.streetOfficeTextField.text = dataCep?.logradouro
-                            self.viewScreen.ufButton.setTitle(dataCep?.uf, for: .normal)
-                            self.viewScreen.ufButton.isEnabled = false
-                            self.viewScreen.streetOfficeTextField.isEnabled = false
-                        }
-                    }
-                })
-            } else {
-                self.viewScreen.ufButton.isEnabled = true
-                self.viewScreen.streetOfficeTextField.isEnabled = true
-                self.viewScreen.ufButton.setTitle("", for: .normal)
-                self.viewScreen.streetOfficeTextField.text = ""
-            }
-        }
-        return true
     }
 }
