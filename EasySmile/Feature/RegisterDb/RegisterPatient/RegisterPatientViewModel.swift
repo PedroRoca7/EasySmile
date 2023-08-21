@@ -18,7 +18,7 @@ class RegisterPatientViewModel {
     
     public func registerPatientDb(patient: Patient) {
         
-        AuthenticationFirebase.auth.createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
+        AuthenticatorFirebase.auth.createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
             
             if let error = error {
                 self.delegate?.failure(error: error)
@@ -32,7 +32,7 @@ class RegisterPatientViewModel {
                     "telefone": patient.telefone,
                 ]
                 
-                let db = AuthenticationFirebase.firestore
+                let db = AuthenticatorFirebase.firestore
                 
                 db.collection("Pacientes").document(userID).setData(userData) { error in
                     if let error = error {

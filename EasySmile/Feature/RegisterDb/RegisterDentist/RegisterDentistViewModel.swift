@@ -22,7 +22,7 @@ class RegisterDentistViewModel {
     public func registerDentistDb(dentist: Dentist) {
         
         
-        AuthenticationFirebase.auth.createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in
+        AuthenticatorFirebase.auth.createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in
             
             if let error = error {
                 self.delegate?.failureRegister(error: error)
@@ -40,7 +40,7 @@ class RegisterDentistViewModel {
                     "ruaDoConsultorio": dentist.ruaDoConsultorio
                 ]
                 
-                let db = AuthenticationFirebase.firestore
+                let db = AuthenticatorFirebase.firestore
                 
                 db.collection("Odontologistas").document(userID).setData(userData) { error in
                     if let error = error {
