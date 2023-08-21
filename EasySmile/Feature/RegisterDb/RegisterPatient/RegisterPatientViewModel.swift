@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestore
 
 protocol RegisterPatientViewModelProtocol: AnyObject {
     func success()
@@ -20,7 +18,7 @@ class RegisterPatientViewModel {
     
     public func registerPatientDb(patient: Patient) {
         
-        Auth.auth().createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
+        AuthenticationFirebase.auth.createUser(withEmail: patient.email, password: patient.senha) { (result, error) in
             
             if let error = error {
                 self.delegate?.failure(error: error)
@@ -34,7 +32,7 @@ class RegisterPatientViewModel {
                     "telefone": patient.telefone,
                 ]
                 
-                let db = Firestore.firestore()
+                let db = AuthenticationFirebase.firestore
                 
                 db.collection("Pacientes").document(userID).setData(userData) { error in
                     if let error = error {

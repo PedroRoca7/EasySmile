@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestore
 
 protocol LoginViewModelProtocol: AnyObject {
     func successPatient(patient: Patient)
@@ -23,7 +21,7 @@ class LoginViewModel {
     
     public func login(email: String, senha: String) {
         
-        Auth.auth().signIn(withEmail: email, password: senha) { (result, error) in
+        AuthenticationFirebase.auth.signIn(withEmail: email, password: senha) { (result, error) in
             if let error = error {
                 self.delegate?.failure(error: error)
             } else if let user = result?.user {
@@ -31,7 +29,7 @@ class LoginViewModel {
                     if result {
                         let userID = user.uid
                         
-                        let db = Firestore.firestore()
+                        let db = AuthenticationFirebase.firestore
                         
                         db.collection("Pacientes").document(userID).getDocument { document, error in
                             if let document = document, document.exists {
@@ -52,7 +50,7 @@ class LoginViewModel {
                     } else {
                         let userID = user.uid
                         
-                        let db = Firestore.firestore()
+                        let db = AuthenticationFirebase.firestore
                         
                         db.collection("Odontologistas").document(userID).getDocument { document, error in
                             if let document = document, document.exists {
@@ -81,12 +79,12 @@ class LoginViewModel {
 
     
     private func checkUserCollection(complete: @escaping (Bool) -> Void) {
-        guard let userID = Auth.auth().currentUser?.uid else {
+        guard let userID = AuthenticationFirebase.auth.currentUser?.uid else {
             print("Erro: nenhum usuário logado.")
             return
         }
         
-        let db = Firestore.firestore()
+        let db = AuthenticationFirebase.firestore
         
         let pacientRef = db.collection("Pacientes").document(userID)
         pacientRef.getDocument { document, error in

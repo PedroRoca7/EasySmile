@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestore
 
 protocol RegisterDentistViewModelProtocol: AnyObject {
     func successCep(dataCep: Cep)
@@ -23,7 +21,8 @@ class RegisterDentistViewModel {
     
     public func registerDentistDb(dentist: Dentist) {
         
-        Auth.auth().createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in
+        
+        AuthenticationFirebase.auth.createUser(withEmail: dentist.email, password: dentist.senha) { (result, error) in
             
             if let error = error {
                 self.delegate?.failureRegister(error: error)
@@ -41,7 +40,7 @@ class RegisterDentistViewModel {
                     "ruaDoConsultorio": dentist.ruaDoConsultorio
                 ]
                 
-                let db = Firestore.firestore()
+                let db = AuthenticationFirebase.firestore
                 
                 db.collection("Odontologistas").document(userID).setData(userData) { error in
                     if let error = error {
