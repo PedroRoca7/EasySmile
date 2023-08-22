@@ -9,7 +9,10 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ScreenRegisterPatientViewController: UIViewController {
+class RegisterPatientViewController: UIViewController {
+    
+    var successRegister: (() -> Void)?
+    var failureRegister: (() -> Void)?
     
     private var textFields: [UITextField] = []
     private let disposedBag = DisposeBag()
@@ -78,15 +81,21 @@ class ScreenRegisterPatientViewController: UIViewController {
     }
 }
 
-extension ScreenRegisterPatientViewController: RegisterPatientViewModelProtocol {
+extension RegisterPatientViewController: RegisterPatientViewModelProtocol {
     func success() {
-        Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
+        Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.",viewController: self, onCompletion: { result in
+            if result {
+                self.successRegister?()
+            }
+        })
     }
     
     func failure(error: Error) {
-        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
-        print("Erro ao cadastrar: \(error.localizedDescription)")
+        print(error.localizedDescription)
+        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self, onCompletion: { result in
+            if !result {
+                self.failureRegister?()
+            }
+        })
     }
-    
-    
 }

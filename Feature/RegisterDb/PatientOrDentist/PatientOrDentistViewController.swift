@@ -11,6 +11,9 @@ import RxCocoa
 
 class PatientOrDentistViewController: UIViewController {
     
+    var registerPatientButton: (() -> Void)?
+    var registerDentistButton: (() -> Void)?
+    
     private lazy var viewScreen: PatientOrDentistView = {
         let viewScreen = PatientOrDentistView()
         
@@ -29,13 +32,11 @@ class PatientOrDentistViewController: UIViewController {
         configNavigation()
        
         viewScreen.patientButton.rx.tap.bind {
-            let screenRegisterPatientViewController = ScreenRegisterPatientViewController()
-            self.navigationController?.pushViewController(screenRegisterPatientViewController, animated: true)
+            self.registerPatientButton?()
         }.disposed(by: disposedBag)
         
         viewScreen.dentistButton.rx.tap.bind {
-            let screenRegisterDentistViewController = ScreenRegisterDentistViewController()
-            self.navigationController?.pushViewController(screenRegisterDentistViewController, animated: true)
+            self.registerDentistButton?()
         }.disposed(by: disposedBag)
     }
     

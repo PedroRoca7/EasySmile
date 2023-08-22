@@ -11,9 +11,13 @@ import RxCocoa
 
 class InitialScreenViewController: UIViewController {
     
+    var loginButtonTap: (() -> Void)?
+    var registerButtonTap: (() -> Void)?
+    
     private lazy var viewScreen: InitialScreenView = {
-       let viewScreen = InitialScreenView()
-
+        let viewScreen = InitialScreenView()
+        
+        
         return viewScreen
     }()
     
@@ -28,13 +32,11 @@ class InitialScreenViewController: UIViewController {
         super.viewDidLoad()
         
         viewScreen.loginButton.rx.tap.bind {
-            let loginViewController = LoginViewController()
-            self.navigationController?.pushViewController(loginViewController, animated: true)
+            self.loginButtonTap?()
         }.disposed(by: disposedBag)
         
         viewScreen.registerButton.rx.tap.bind {
-            let patientOrDentistViewController = PatientOrDentistViewController()
-            self.navigationController?.pushViewController(patientOrDentistViewController, animated: true)
+            self.registerButtonTap?()
         }.disposed(by: disposedBag)
     }
 

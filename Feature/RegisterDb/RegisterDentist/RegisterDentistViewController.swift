@@ -9,8 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ScreenRegisterDentistViewController: UIViewController {
+class RegisterDentistViewController: UIViewController {
     
+    var successRegisterDentist: (() -> Void)?
+    var failureRegisterDentist: (() -> Void)?
+    var failureCep: (() -> Void)?
     private var cep: Cep?
     private var textFields: [UITextField] = []
     private var disposedBag = DisposeBag()
@@ -97,7 +100,7 @@ class ScreenRegisterDentistViewController: UIViewController {
 
 }
 
-extension ScreenRegisterDentistViewController: RegisterDentistViewModelProtocol {
+extension RegisterDentistViewController: RegisterDentistViewModelProtocol {
     func successCep(dataCep: Cep) {
         self.viewScreen.streetOfficeTextField.text = dataCep.logradouro
         self.viewScreen.streetOfficeTextField.sendActions(for: .valueChanged)
@@ -105,15 +108,27 @@ extension ScreenRegisterDentistViewController: RegisterDentistViewModelProtocol 
     }
     
     func failureCep(error: Error) {
-        Alert.showBasicAlert(title: "Error", message: "\(error.localizedDescription)", viewController: self)
+        Alert.showBasicAlert(title: "Error", message: "\(error.localizedDescription)", viewController: self) { result in
+            if !result {
+                self.failureCep?()
+            }
+        }
     }
     
     func successRegister() {
-        Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self)
+        Alert.showBasicAlert(title: "Sucesso", message: "Cadastro feito com sucesso.", viewController: self) { result in
+            if !result {
+                self.successRegisterDentist?()
+            }
+        }
     }
     
     func failureRegister(error: Error) {
-        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self)
+        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer o cadastro.", viewController: self) { result in
+            if !result {
+                self.failureRegisterDentist?()
+            }
+        }
     }
     
     

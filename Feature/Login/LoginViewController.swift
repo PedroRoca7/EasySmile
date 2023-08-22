@@ -10,7 +10,10 @@ import RxSwift
 import RxCocoa
 
 class LoginViewController: UIViewController {
-        
+    
+    var failureLogin: (() -> Void)?
+    var successPatient: (() -> Void)?
+    var sucessDentist: (() -> Void)?
     var patient: Patient?
     var dentist: Dentist?
     private let disposedBag = DisposeBag()
@@ -23,6 +26,7 @@ class LoginViewController: UIViewController {
     
     private lazy var viewScreen: LoginView = {
         let viewScreen = LoginView()
+        
         
         return viewScreen
     }()
@@ -42,7 +46,11 @@ class LoginViewController: UIViewController {
                   let senha = self.viewScreen.passwordTextField.text,
                   !email.isEmpty,
                   !senha.isEmpty else {
-                Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
+                Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self) { result in
+                    if !result {
+                        self.failureLogin?()
+                    }
+                }
                 return
             }
 
@@ -65,19 +73,23 @@ extension LoginViewController: LoginViewModelProtocol {
         self.patient = Patient(nome: patient.nome, email: patient.email, cpf: patient.cpf, telefone: patient.telefone, senha: "")
         let mainMenuPatient = MainMenuPatientViewController()
         mainMenuPatient.patientData = self.patient
-        self.navigationController?.pushViewController(mainMenuPatient, animated: true)
+        successPatient?()
     }
     
     func successDentist(dentist: Dentist) {
         self.dentist = Dentist(nome: dentist.nome, email: dentist.email, cpf: dentist.cpf, telefone: dentist.telefone, numeroDaInscricao: dentist.numeroDaInscricao, uf: dentist.uf, ruaDoConsultorio: dentist.ruaDoConsultorio, senha: "")
         let mainMenuDentist = MainMenuDentistViewController()
         mainMenuDentist.dentistData = self.dentist
-        self.navigationController?.pushViewController(mainMenuDentist, animated: true)
+        sucessDentist?()
     }
     
     func failure(error: Error) {
         print("Erro ao fazer login: \(error.localizedDescription)")
-        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self)
+        Alert.showActionSheet(title: "Erro", message: "Erro ao fazer login, email ou senha inválidos", viewController: self) { result in
+            if !result {
+                self.failureLogin?()
+            }
+        }
     }
     
     
