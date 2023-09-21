@@ -10,7 +10,6 @@ import UIKit
 class InitialScreenView: UIView {
     
     
-    
     lazy var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView()
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
