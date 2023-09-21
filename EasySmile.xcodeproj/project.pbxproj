@@ -206,7 +206,7 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		CE2B6C692A71ECE90097B539 /* Feature */ = {
+		CE2B6C692A71ECE90097B539 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				CE16EA5D2A94E4BE0052379C /* Coordinator */,
@@ -215,7 +215,7 @@
 				CE4B5DEA2A74188C001C054C /* RegisterDb */,
 				CE4B5DED2A741CEA001C054C /* ScreenInitial */,
 			);
-			path = Feature;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		CE2B6C6A2A71ED010097B539 /* Login */ = {
@@ -307,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9C85CD2A61D2040028FC24 /* EasySmile */,
-				CE2B6C692A71ECE90097B539 /* Feature */,
+				CE2B6C692A71ECE90097B539 /* Source */,
 				CE9C86002A61DEDF0028FC24 /* Models */,
 				CE25601E2A70447D00530AF2 /* Services */,
 				CE9C85FF2A61DED90028FC24 /* Utils */,
