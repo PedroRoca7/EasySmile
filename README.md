@@ -35,6 +35,9 @@ A aplicação consiste em duas formas de registros, uma para pacientes e outra p
 </div>
 
 # Tecnologias utilizadas
+## Pods
+- RxSwift
+- RxCocoa
 ## Back end
 - Firebase
 ## Mobile
