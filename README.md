@@ -8,23 +8,31 @@ EasySmile é uma aplicação mobile construída com a intenção de facilitar o 
 A aplicação consiste em duas formas de registros, uma para pacientes e outra para odontologistas, ao fazer login o app identifica se o usuario que fez login é um paciente ou um odontologista de acordo com o registro feito, depois de logado o usuário consegue caso for paciente consegue ver uma tela e se for odontologista ele vê outra tela.(Aplicativo ainda em desenvolvimento).
 
 ## Layout mobile
-### Tela de Login -------------- Tela de Cadastro
+### Home
 <div> 
-  <img src="https://github.com/PedroRoca7/AppBank/assets/118369268/d517727d-22e2-40ae-b979-595bb494965c" width= "250px"/>
-  <img src="https://github.com/PedroRoca7/AppBank/assets/118369268/bf00fe79-24c8-471f-b738-d8ba6c34f1de" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/c75d7ed0-f0f2-4314-bae6-2e7d3bcdbe75" width= "250px"/>
 </div>
 
-### Home Mostrando Saldo --- Home Ocultando Saldo
+### Login
 <div> 
-  <img src="https://github.com/PedroRoca7/AppBank/assets/118369268/4cf75524-4406-4978-9a91-e8a2516631be" width= "250px"/>
-  <img src="https://github.com/PedroRoca7/AppBank/assets/118369268/a5905fbb-b7ac-41cd-9325-3cb4335522d6" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/966f4587-e9aa-433b-8950-0630e864115b" width= "250px"/>
 </div>
 
-### Tela De Extrato
+### Telas de Registro
 <div> 
-  <img src="https://github.com/PedroRoca7/AppBank/assets/118369268/eababa52-2bd7-4aa4-a9c7-a29b8310c7e2" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/e9fe8c5d-745b-499f-b3fb-77d50412cd6a" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/3b920638-9bfb-4e2e-bfca-85614b0e4834" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/18f8db58-b2e6-4309-a752-714857c5d0ba" width= "250px"/>
 </div>
 
+### Telas de Menu
+<div> 
+  
+  ### Menu logado como Paciente -- Menu logado como Odontologista
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/ae8d30ea-598e-4620-94c4-578a5a98844b" width= "250px"/>
+  <img src="https://github.com/PedroRoca7/EasySmile/assets/118369268/2a022948-c862-48f0-a9be-7be866690595" width= "250px"/>
+
+</div>
 
 # Tecnologias utilizadas
 ## Back end
