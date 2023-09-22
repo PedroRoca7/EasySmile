@@ -1,4 +1,4 @@
-# AppBank 
+# EasySmile 
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/PedroRoca7/EasySmile/blob/main/LICENSE) 
 
 # Sobre o projeto
