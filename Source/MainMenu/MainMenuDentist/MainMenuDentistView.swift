@@ -28,27 +28,31 @@ class MainMenuDentistView: UIView {
     lazy var myProfile: UIButton = {
         let myProfile = UIButton()
         myProfile.translatesAutoresizingMaskIntoConstraints = false
+        myProfile.setImage(UIImage(named: "iconePerfil"), for: .normal)
         
         return myProfile
     }()
     
-    lazy var n: UIButton = {
+    lazy var clientsList: UIButton = {
         let n = UIButton()
         n.translatesAutoresizingMaskIntoConstraints = false
+        n.setImage(UIImage(named: "iconeLupa"), for: .normal)
         
         return n
     }()
     
-    lazy var m: UIButton = {
+    lazy var scheduling: UIButton = {
         let m = UIButton()
         m.translatesAutoresizingMaskIntoConstraints = false
+        m.setImage(UIImage(named: "iconePerfil"), for: .normal)
         
         return m
     }()
     
-    lazy var p: UIButton = {
+    lazy var configScheduling: UIButton = {
         let p = UIButton()
         p.translatesAutoresizingMaskIntoConstraints = false
+        p.setImage(UIImage(named: "iconeLupa"), for: .normal)
         
         return p
     }()
@@ -67,9 +71,9 @@ class MainMenuDentistView: UIView {
         self.addSubview(self.backgroundImage)
         self.addSubview(self.nameDentistLabel)
         self.addSubview(self.myProfile)
-        self.addSubview(self.n)
-        self.addSubview(self.m)
-        self.addSubview(self.p)
+        self.addSubview(self.clientsList)
+        self.addSubview(self.scheduling)
+        self.addSubview(self.configScheduling)
     }
     
     private func configConstrains() {
@@ -92,22 +96,22 @@ class MainMenuDentistView: UIView {
             self.myProfile.heightAnchor.constraint(equalToConstant: 125),
             self.myProfile.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
-            self.n.centerYAnchor.constraint(equalTo: myProfile.centerYAnchor),
-            self.n.leadingAnchor.constraint(lessThanOrEqualTo: self.myProfile.trailingAnchor, constant: 45),
-            self.n.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -30),
-            self.n.heightAnchor.constraint(equalToConstant: 125),
-            self.n.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
+            self.clientsList.centerYAnchor.constraint(equalTo: myProfile.centerYAnchor),
+            self.clientsList.leadingAnchor.constraint(lessThanOrEqualTo: myProfile.trailingAnchor, constant: 45),
+            self.clientsList.trailingAnchor.constraint(equalTo: guide.trailingAnchor, constant: -45),
+            self.clientsList.heightAnchor.constraint(equalToConstant: 125),
+            self.clientsList.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
-            self.m.topAnchor.constraint(equalTo: myProfile.bottomAnchor, constant: 60),
-            self.m.leadingAnchor.constraint(equalTo: myProfile.leadingAnchor),
-            self.m.heightAnchor.constraint(equalToConstant: 125),
-            self.m.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
+            self.scheduling.topAnchor.constraint(equalTo: myProfile.bottomAnchor, constant: 60),
+            self.scheduling.centerXAnchor.constraint(equalTo: myProfile.centerXAnchor),
+            self.scheduling.heightAnchor.constraint(equalToConstant: 125),
+            self.scheduling.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
-            self.p.centerYAnchor.constraint(equalTo: m.centerYAnchor),
-            self.p.leadingAnchor.constraint(lessThanOrEqualTo: self.m.trailingAnchor, constant: 45),
-            self.p.trailingAnchor.constraint(equalTo: n.trailingAnchor),
-            self.p.heightAnchor.constraint(equalToConstant: 125),
-            self.p.widthAnchor.constraint(greaterThanOrEqualToConstant: 120)
+            self.configScheduling.centerYAnchor.constraint(equalTo: scheduling.centerYAnchor),
+            self.configScheduling.leadingAnchor.constraint(lessThanOrEqualTo: scheduling.trailingAnchor, constant: 70),
+            self.configScheduling.centerXAnchor.constraint(equalTo: clientsList.centerXAnchor),
+            self.configScheduling.heightAnchor.constraint(equalToConstant: 125),
+            self.configScheduling.widthAnchor.constraint(greaterThanOrEqualToConstant: 120)
         
         
         ])
